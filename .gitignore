@@ -1,2 +1,8 @@
 # Project exclude paths
-/target/
+*.class
+.settings/
+target/
+.project
+MANIFEST.MF
+.classpath
+.idea/

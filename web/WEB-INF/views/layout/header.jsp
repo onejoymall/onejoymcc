@@ -12,11 +12,15 @@
 <!--    <meta name="viewport" content="user-scalable=yes, width=1200, target-densitydpi=medium-dpi" />-->
     <link href="/assets/css/reset.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/common.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/common/common.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/jquery.bxslider.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/header-mcn.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/footer-mcn.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/${style}.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700&display=swap&subset=korean" rel="stylesheet" type="text/css">
+    <!-- timepicker -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <!--
     [if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
@@ -25,6 +29,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
     <script src="/assets/js/jquery.bxslider.min.js"></script>
+    <!-- timepicker -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 </head>
 <body>
     <div class="scroll-t" id="topcontrol">

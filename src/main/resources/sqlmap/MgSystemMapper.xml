@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="mall.MgSystemMapper">
+
+  <insert id="insertSystemDelivery" parameterType="com.onejoymcc.vo.MgDeliveryVO">
+      insert into store_delivery
+      (
+        store_id,
+        product_delivery_class,
+        product_delivery_type,
+        product_delivery_International_type,
+        product_delivery_locale,
+        product_delivery_payment_type,
+        product_delivery_date,
+        product_delivery_payment_class,
+        product_delivery_payment,
+        product_delivery_store_pickup,
+		product_delivery_hope_date_yn,
+		product_delivery_hope_time_yn,
+		product_delivery_bundle_yn,
+		refund_postcode,
+		refund_roadAddress,
+		refund_jibunAddress,
+		refund_extraAddress,
+		forward_postcode,
+		forward_roadAddress,
+		forward_jibunAddress,
+		forward_extraAddress
+      )
+      values
+      (
+        #{store_id},
+        #{product_delivery_class},
+        #{product_delivery_type},
+        #{product_delivery_International_type},
+        #{product_delivery_locale},
+        #{product_delivery_payment_type},
+        #{product_delivery_date},
+        #{product_delivery_payment_class},
+        #{product_delivery_payment},
+        #{product_delivery_store_pickup},
+        #{hope_delivery_date_yn},
+		#{hope_delivery_time_yn},
+		#{bundle_delivery_yn},
+        #{refund_postcode},
+		#{refund_roadAddress},
+		#{refund_jibunAddress},
+		#{refund_extraAddress},
+		#{postcode},
+		#{roadAddress},
+		#{jibunAddress},
+		#{extraAddress}
+      )
+      on duplicate KEY update
+        store_id=#{store_id},
+        product_delivery_class=#{product_delivery_class},
+        product_delivery_type=#{product_delivery_type},
+        product_delivery_International_type=#{product_delivery_International_type},
+        product_delivery_locale=#{product_delivery_locale},
+        product_delivery_payment_type=#{product_delivery_payment_type},
+        product_delivery_date=#{product_delivery_date},
+        product_delivery_payment_class=#{product_delivery_payment_class},
+        product_delivery_payment=#{product_delivery_payment},
+        product_delivery_store_pickup=#{product_delivery_store_pickup},
+		product_delivery_hope_date_yn = #{hope_delivery_date_yn},
+		product_delivery_hope_time_yn = #{hope_delivery_time_yn},
+		product_delivery_bundle_yn = #{bundle_delivery_yn},
+		refund_postcode = #{refund_postcode},
+		refund_roadAddress = #{refund_roadAddress},
+		refund_jibunAddress = #{refund_jibunAddress},
+		refund_extraAddress = #{refund_extraAddress},
+		forward_postcode = #{postcode},
+		forward_roadAddress = #{roadAddress},
+		forward_jibunAddress = #{jibunAddress},
+		forward_extraAddress = #{extraAddress}
+    </insert>
+
+    <select id="getSystemDelivery" parameterType="com.onejoymcc.vo.MgDeliveryVO" resultType="java.util.Map">
+        select * from store_delivery where store_id = #{store_id}
+    </select>
+    <select id="getStoreDelivery" parameterType="com.onejoymcc.vo.MgDeliveryVO" resultType="java.util.Map">
+        select * from store_delivery where store_id = (select product_user_ud from product where product_cd = #{product_cd})
+    </select>
+    <select id="getCartStoreHopeInfo" parameterType="com.onejoymcc.vo.CartPaymentVO" resultType="java.util.Map">
+        select if(sum(if(A.product_delivery_hope_date_yn = 'Y',1,0)) > 0,'Y','N') product_delivery_hope_date_yn,
+				if(sum(if(A.product_delivery_hope_time_yn = 'Y',1,0)) > 0,'Y','N') product_delivery_hope_time_yn
+		from store_delivery A where store_id IN (select product_user_ud from product WHERE product_cd IN (select product_cd from product_cart WHERE cart_cd IN 
+		<foreach collection="chk" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+		))
+    </select>
+  <select id="getProductCodeList" parameterType="com.onejoymcc.vo.MgProductCodeVO" resultType="java.util.Map">
+    select
+    *,(select code_name from code where code.code='product_class_code' and code_value=product_class_code.product_class_code_type) product_class_code_type_name
+    from product_class_code where 1=1
+    <if test="product_class_code_type != null and product_class_code_type !=''"> and product_class_code_type =#{product_class_code_type}</if>
+    <if test="product_class_name != null and product_class_name !=''"> and product_class_name =#{product_class_name}</if>
+    order by reg_date desc
+  </select>
+  <select id="getNormalUserList" resultType="java.util.Map">
+    select
+    *
+    from user
+    where level = 1
+    order by reg_date desc
+  </select>
+  <select id="getDeliveryAreaList" parameterType="hashmap" resultType="java.util.Map">
+    select *
+    from store_delivery_area A 
+    where 1=1
+    and store_id = #{store_id}
+    order by A.reg_date desc 
+	LIMIT ${rowStart-1}, ${displayRowCount}
+  </select>
+  <select id="getDeliveryAreaListCount" parameterType="hashmap" resultType="Integer">
+    select ifnull(count(*),0) cnt
+    from store_delivery_area A 
+    where 1=1
+    and store_id = #{store_id}
+  </select>
+  <select id="getAdditionalDeliveryPayment" parameterType="hashmap" resultType="Integer">
+    SELECT if((SELECT product_delivery_area_yn FROM store_delivery WHERE store_id = (SELECT product_user_ud FROM product WHERE product_cd = #{product_cd})) = 'Y',A.additional_delivery_payment,0) additionalDeliveryPayment
+	FROM store_delivery_area A
+	WHERE postcode = #{postcode}
+  </select>
+  <insert id="insertProductCode" parameterType="com.onejoymcc.vo.MgProductCodeVO">
+    insert into product_class_code
+    (
+      product_class_code_type,
+      product_class_code,
+      product_class_name,
+      product_class_use_yn
+    )values(
+      #{product_class_code_type},
+      #{product_class_code},
+      #{product_class_name},
+      #{product_class_use_yn}
+    )
+    on duplicate KEY update
+    product_class_code_type=#{product_class_code_type},
+    product_class_code=#{product_class_code},
+    product_class_name=#{product_class_name},
+    product_class_use_yn=#{product_class_use_yn}
+
+  </insert>
+  <update id="updateDeliveryArea" parameterType="hashmap">
+  	UPDATE store_delivery SET
+  		product_delivery_area_yn = #{product_delivery_area_yn}
+  	WHERE store_id = #{store_id}
+  </update>
+  <update id="insertDeliveryArea" parameterType="hashmap">
+  	INSERT INTO store_delivery_area(
+  		store_id,
+  		area_name,
+  		postcode,
+  		additional_delivery_payment
+  	)values(
+  		#{store_id},
+  		#{area_name},
+  		#{postcode},
+  		#{additional_delivery_payment}
+  	)
+  	on duplicate KEY update
+    store_id=#{store_id},
+	area_name=#{area_name},
+	postcode=#{postcode},
+	additional_delivery_payment=#{additional_delivery_payment}
+  </update>
+</mapper>

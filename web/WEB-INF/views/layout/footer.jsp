@@ -96,5 +96,9 @@
             }
         });
     </script>
+
+    <script src='<c:url value="/assets/js/commonScript.js"/>'></script>
+
+    <script src='<c:url value="/assets/js/commonScriptSub.js"/>'></script>
 </body>
 </html>

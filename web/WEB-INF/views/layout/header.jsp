@@ -14,6 +14,7 @@
     <link href="/assets/css/common.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/jquery.bxslider.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/header-mcn.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/commonsub.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/footer-mcn.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/${style}.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700&display=swap&subset=korean" rel="stylesheet" type="text/css">
@@ -31,6 +32,45 @@
         <i class="scroll-i"></i>
     </div>
     <header class="header">
+        <div class="usermenu-section">
+            <div class="usermenu-inner">
+                <ul class="usermenu">
+                <c:if test="${!sessionScope.login}">
+
+                    <li><a href="/sign/signup">회원가입</a></li>
+                    <li><a href="/sign/login">로그인</a></li>
+                    <%-- <li><a href="/MyPage/ShoppingBasket">장바구니</a></li>
+                     <li><a href="/MyPage/OrderAndDelivery">주문배송</a></li>
+                     <li><a href="/Help/csinfo">고객센터</a></li>--%>
+                    <%--        <li class="language-nav"><a href="">국가선택</a>
+                            <ul>
+                            <li><a href="">한국</a></li>
+                            <li><a href="">미국</a></li>
+                            <li><a href="">중국</a></li>
+                            <li><a href="">일본</a></li>
+                            </ul>
+                            </li>--%>
+
+                </c:if>
+                <c:if test="${sessionScope.login}">
+                    <%--            <li><a href="/MyPage/ShoppingBasket">장바구니</a></li>
+                                <li><a href="/MyPage/OrderAndDelivery">주문배송</a></li>
+                                <li><a href="/MyPage/DashBoard">MyPage</a></li>
+                                <li><a href="/Help/csinfo">고객센터</a></li>--%>
+                    <li><a href="/sign/logout">로그아웃</a></li>
+                    <%--    <li class="language-nav"><a href="">국가선택</a>
+                        <ul>
+                        <li><a href="">한국</a></li>
+                        <li><a href="">미국</a></li>
+                        <li><a href="">중국</a></li>
+                        <li><a href="">일본</a></li>
+                        </ul>
+                        </li>--%>
+                </c:if>
+
+                </ul>
+            </div>
+        </div>
         <div class="header-logo">
             <div class="header-logo-inner">
                <a class="logoA" href="/"><h1>onejoylife</h1></a>

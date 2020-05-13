@@ -20,13 +20,10 @@ $(document).ready(function(){
     });
 $(document).ready(function(){
     $(".category-tree-2dp").hide();
-    $(".category-tree li a").click(function(){
-        event.preventDefault();
-        $(this).next().slideToggle(300);
-    });
-    $('.category-tree-2dp>li>a, .category-tree>li>a').click(function(){
-        $(this).children('span').toggleClass('active');
-    });
+        $(".category-tree li a").click(function(){
+            event.preventDefault();
+            $(this).next().slideToggle(300);
+        });
     $(function(){
         $('.category-tree li>a').click(function(){
         $('.category-tree li>a').removeClass('active');
@@ -34,6 +31,12 @@ $(document).ready(function(){
         });
     });
 });
+
+
+
+
+
+
 $(document).ready(function(){
     $('.notice-section-ul li').click(function(){
         var tab_id = $(this).attr('data-tab');
@@ -66,17 +69,27 @@ $(document).ready(function(){
         });
         $(".date_pick").datepicker();                    
     });
+    //시간
+    $(function(){
+    	$('.time_pick').timepicker({
+		    timeFormat: 'hh:mm p',
+		    interval: 60,
+		    dynamic: false,
+		    dropdown: true,
+		    scrollbar: true
+		});
+    })
     //file upload
-    var uploadFile = $('.fileBox .uploadBtn');
-
-    uploadFile.on('change', function(){
-        if(window.FileReader){
-            var filename = $(this)[0].files[0].name;
-        } else {
-            var filename = $(this).val().split('/').pop().split('\\').pop();
-        }
-        $(this).siblings('.fileName').val(filename);
-    });
+    // var uploadFile = $('.fileBox .uploadBtn');
+    //
+    // uploadFile.on('change', function(){
+    //     if(window.FileReader){
+    //         var filename = $(this)[0].files[0].name;
+    //     } else {
+    //         var filename = $(this).val().split('/').pop().split('\\').pop();
+    //     }
+    //     $(this).siblings('.fileName').val(filename);
+    // });
 
     var uploadFile2 = $('.fileBox2 .uploadBtn2');
     uploadFile2.on('change', function(){
@@ -488,87 +501,5 @@ $(function(){
 
         }else{$(".noti-ck-box *").attr("disabled",false);
         }
-    });
-
-// 입점업체 배송비설정
-
-// 업체설정
-    $('input[name=shipping-company]').click(function(){
-        if($('input[name=shipping-company]:checked').val() == "O-1"){
-            $('table.shipping-company-box').attr('style','display:none');
-            $('table.shipping-fee-box').attr('style','display:none');
-        }else{
-            $('table.shipping-company-box').attr('style','display:block');
-            $('input[name=shipping-company]').prop('checked');
-        }
-    })
-// 지역추가배송비
-    $('input[name=goods-savings-type]').click(function(){
-        if($('input[name=goods-savings-type]:checked').val() == "W"){
-            $('tr.area-show').attr('style','display:none');
-        }else{
-            $('tr.area-show').attr('style','display:table-row');
-            $('input[name=goods-savings-type]').prop('checked');
-        }
-    })
-// 배송비 설정
-    $('#shipping-fee').change(function() {
-        var state = $('#shipping-fee option:selected').val();
-        if ( state == 'fee-opt1' ) {
-            $('.shipping-fee-box tr').hide();
-        }
-        else if( state == 'fee-opt2' ){
-            $('.shipping-fee-box tr').hide();
-            $('.fee-box1').show();
-        } 
-        else if( state == 'fee-opt3' ){
-            $('.shipping-fee-box tr').hide();
-            $('.fee-box2').show();
-        } 
-        else if( state == 'fee-opt4' ){
-            $('.shipping-fee-box tr').hide();
-            $('.fee-box3').show();
-        } 
-        else if( state == 'fee-opt5' ){
-            $('.shipping-fee-box tr').hide();
-            $('.fee-box4').show();
-        } 
-        else if( state == 'fee-opt6' ){
-            $('.shipping-fee-box tr').hide();
-            $('.fee-box5').show();
-        }
-        else if( state == 'fee-opt7' ){
-            $('.shipping-fee-box tr').hide();
-            $('.fee-box6').show();
-        }
-    });
-
-// 전시상품/행사신청
-    $(".product-list3").click(function(){
-        $(".modal3").attr("style", "display:block");
-        $('body').css("overflow", "hidden");
-    });
-    $(".modal-close").click(function(){
-        $(".modal3").attr("style", "display:none");
-        $('body').css("overflow", "auto");
-    });
-    $(".product-list4").click(function(){
-        $(".modal4").attr("style", "display:block");
-        $('body').css("overflow", "hidden");
-    });
-    $(".modal-close4").click(function(){
-        $(".modal4").attr("style", "display:none");
-        $('body').css("overflow", "auto");
-    });
-
-//회원가입 이용약관 모달
-    $(".tos1, .tos2, .tos3, .tos4").click(function(e){
-        e.preventDefault();
-        $(".modal").attr("style", "display:block");
-        $('body').css("overflow", "hidden");
-    });
-    $(".modal-close, .md-btn-default").click(function(){
-        $(".modal").attr("style", "display:none");
-        $('body').css("overflow", "auto");
     });
 });

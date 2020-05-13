@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="mall.CartMapper">
+    <select id="getFavoritesList" parameterType="java.util.Map" resultType="java.util.Map">
+        <![CDATA[
+        select
+            A.*,
+            B.*,
+            (select code.code_name from code where code.code='product_delivery_type' and code.code_value =B.product_delivery_type) as product_delivery_type_name,
+            (select Z.file_link from product_file Z where Z.key_id = B.product_cd and Z.file_order = 1) as file_1,
+            (select Z.file_link from product_file Z where Z.key_id = B.product_cd and Z.file_order = 2) as file_2,
+            (select Z.file_link from product_file Z where Z.key_id = B.product_cd and Z.file_order = 3) as file_3,
+            (select Z.file_link from product_file Z where Z.key_id = B.product_cd and Z.file_order = 4) as file_4,
+            (select Z.file_link from product_file Z where Z.key_id = B.product_cd and Z.file_order = 5) as file_5
+        from product_favorites A left join product B on(A.product_cd = B.product_cd) where A.user_id =#{user_id}
+        ]]>
+        <if test="product_cd != null"> <![CDATA[AND A.product_cd= #{product_cd} ]]></if>
+        order by A.reg_date DESC LIMIT ${rowStart-1}, ${staticRowEnd}
+    </select>
+    <select id="getFavoritesListCount" parameterType="java.util.Map" resultType="Integer">
+        <![CDATA[
+        SELECT
+            count(*) as cnt
+        FROM product_favorites  where user_id = #{user_id}
+
+        ]]>
+        <if test="product_cd != null"> <![CDATA[AND product_cd= #{product_cd} ]]></if>
+    </select>
+</mapper>

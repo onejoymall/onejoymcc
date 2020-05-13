@@ -8,16 +8,18 @@
     <div class="wrap">
 
         <div class="main">
+        	<form name="defaultForm" id="defaultForm" method="POST" action="http://onejoy-life.com/product/productPayment">
             <div class="top-area clearfix">
                 <div class="top-left">
                     <div class="iframebox">
-                        <iframe src="https://www.youtube.com/embed/i19OgVzMMUE?feature=oembed" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/${list.product_youtube_id}?feature=oembed" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
                 <div class="summary">
-                    <h2 class="product-title">MLBB is not too far from you – Velvet Lip Tint from 3CE</h2>
+                    <h2 class="product-title">${list.product_name}</h2>
                     <div class="price-area clearfix">
-                        <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
+                        <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</ins><del>
+                        <span class="price-before"><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</span></del></p>
                         <p class="price-s">
                             <span class="onsale">Sale!</span>
                             <span class="onfeatured off">Featured!</span>
@@ -26,7 +28,7 @@
                     <div class="views-count">
                         조회수 <span>75,690</span> 
                         <div class="star-rating">
-                            <span class="star-i">★☆☆☆☆</span>
+                            <span class="star-i">★★★★★</span>
                             <span class="star-num">5</span>
                         </div>
                         <div class="heart-thumb">
@@ -37,19 +39,18 @@
                         </div>
                     </div>
                     <div class="button-area">
-                        <form action="" method="POST">
-                            <span class="variations-t">color</span>
-                            <select name="" id="" class="product-select">
-                                <option value="">옵션 선택</option>
-                                <option value="">choose an option</option>
-                                <option value="">choose an option</option>
-                                <option value="">choose an option</option>
-                            </select>
-                            <button type="button" class="cart-btn">구매하기</button>
-                        </form>
+	                    ${option}
+	                    <input type="hidden" name="payment_order_quantity" value="1">
+	                    <input type="hidden" name="order_max" value="${list.product_max_limit}" />
+		                <input type="hidden" name="order_min" value="${list.product_min_limit}" />
+		                <input type="hidden" name="product_delivery_bundle_yn" value="${list.product_delivery_bundle_yn}" />
+		                <input type="hidden" name="product_user_ud" value="${list.product_user_ud}" />
+		                <input type="hidden" name="product_cd" value="${list.product_cd}" />
+	                    <button type="button" class="cart-btn" id="paymentSubmit">구매하기</button>
                     </div>
                 </div>
             </div>
+            </form>
             <div class="creators-p">
                 <div class="profile-head">
                     <a href="">
@@ -70,20 +71,20 @@
                     <div class="tab-box">
                         <ul>
                             <li><a href="#sec1" class="description-a">상세설명</a></li>
-                            <li><a href="#sec2" class="reviews-a">리뷰 <span>(24)</span></a></li>
+                            <li><a href="#sec2" class="reviews-a">리뷰 <span>(${searchVO.totRow})</span></a></li>
                         </ul>
                     </div>
                     <div class="content1" id="sec1">
                         <div class="content-img" >
-                            <img src="../assets/img/3ce.png" alt="">
+                            ${list.product_html}
                         </div>
                     </div>
                     <div class="content2" id="sec2">
                         <div class="content-reviews">
                             <h3>
-                                <span class="re-product-t">MLBB is not too far from you – Velvet Lip Tint from 3CE</span> 에 대한 <span>24</span> 개의 리뷰가 있습니다.
+                                <span class="re-product-t">${list.product_name}</span> 에 대한 <span>${searchVO.totRow}</span> 개의 리뷰가 있습니다.
                             </h3>
-                            <h5><span>5.0</span></h5>
+                            <h5><span>${scoreAvg}</span></h5>
                             <div class="rating-bars-box">
                                 <div class="rating-bar">
                                     <div class="rating-start">
@@ -172,106 +173,32 @@
                         </div>
                         <div class="comments clearfix">
                             <div class="wcpr-grid clearfix">
+                            	<c:if test="${not empty reviewList}">
+                   				<c:forEach var="list" items="${reviewList}">
                                 <div class="grid-content">
                                     <a href="">
                                         <div class="reviews-img">
-                                            <img src="../assets/img/sub-slider-img3.png" alt="">
+                                        	<c:if test="${not empty list.file_1}">
+                                            	<img src="${list.file_1}" alt="">
+                                           	</c:if>
                                         </div>
                                         <div class="reviews-content">
-                                            <h3 class="author"><span>Roxanne</span></h3>
+                                            <h3 class="author"><span>${list.email}</span></h3>
                                             <div class="rating-start">
+                                            	<c:forEach var="i" begin="1" end="${list.review_score}">
                                                 <span class="star1 active">★</span>
-                                                <span class="star2 active">★</span>
-                                                <span class="star3">★</span>
-                                                <span class="star4">★</span>
-                                                <span class="star5">★</span>
+                                                </c:forEach>
                                             </div>
                                             <div class="review-content">
-                                                Super love this liptint! Ang smooth nya pag inapply sa lips!
+                                            	<b>${list.review_title}</b>
+                                            	<br>
+                                                ${list.review_content}
                                             </div>
                                         </div>
                                     </a>
                                 </div>
-                                <div class="grid-content">
-                                    <a href="">
-                                        <div class="reviews-img">
-                                            <img src="../assets/img/lip-3.jpg" alt="">
-                                        </div>
-                                        <div class="reviews-content">
-                                            <h3 class="author"><span>Roxanne</span></h3>
-                                            <div class="rating-start">
-                                                <span class="star1 active">★</span>
-                                                <span class="star2 active">★</span>
-                                                <span class="star3 active">★</span>
-                                                <span class="star4">★</span>
-                                                <span class="star5">★</span>
-                                            </div>
-                                            <div class="review-content">
-                                                Very hesitant at first because I am really not into pricey lippies. Yep I am quite “kuripot” so my lipsticks are usually worth 200-300! But maybe there’s something in 3CE that convinced me to avail not only one but twoooo 💓 Anddd yaaaaas I’m really loving it!!! 🥰💯 It is really worth the price! Superb! Plus may freebies pa na hindi ko alam kung pano gamitin 😝 First transaction and I know marami pang susunod. Kudos to kdresser 💋
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                </div>
-                                <div class="grid-content">
-                                    <a href="">
-                                        <div class="reviews-img">
-                                            <img src="../assets/img/lip-2.jpeg" alt="">
-                                        </div>
-                                        <div class="reviews-content">
-                                            <h3 class="author"><span>Roxanne</span></h3>
-                                            <div class="rating-start">
-                                                <span class="star1 active">★</span>
-                                                <span class="star2 active">★</span>
-                                                <span class="star3 active">★</span>
-                                                <span class="star4">★</span>
-                                                <span class="star5">★</span>
-                                            </div>
-                                            <div class="review-content">
-                                                Super love this liptint! Ang smooth nya pag inapply sa lips!
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="grid-content">
-                                    <a href="">
-                                        <div class="reviews-img">
-                                        </div>
-                                        <div class="reviews-content">
-                                            <h3 class="author"><span>Roxanne</span></h3>
-                                            <div class="rating-start">
-                                                <span class="star1 active">★</span>
-                                                <span class="star2 active">★</span>
-                                                <span class="star3">★</span>
-                                                <span class="star4">★</span>
-                                                <span class="star5">★</span>
-                                            </div>
-                                            <div class="review-content">
-                                                I super like this lippie hindi nadridry ng lips ko and one thing is ordered yesterday and today i already received super fast ng del.😊😊 My question is 3 lng po yung available na color yung iba po ba wla ?😊😊
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="grid-content">
-                                    <a href="">
-                                        <div class="reviews-img">
-                                            <img src="../assets/img/lip-3.jpg" alt="">
-                                        </div>
-                                        <div class="reviews-content">
-                                            <h3 class="author"><span>Roxanne</span></h3>
-                                            <div class="rating-start">
-                                                <span class="star1 active">★</span>
-                                                <span class="star2 active">★</span>
-                                                <span class="star3">★</span>
-                                                <span class="star4">★</span>
-                                                <span class="star5">★</span>
-                                            </div>
-                                            <div class="review-content">
-                                                Super love this liptint! Ang smooth nya pag inapply sa lips!
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                                </c:forEach>
+                                </c:if>
                             </div>
                         </div>
                         <div class="related-product clearfix">

@@ -18,6 +18,7 @@
     <link href="/assets/css/commonsub.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/footer-mcn.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/${style}.css" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' href='<c:url value="/assets/plugins/toast/jquery.toast.min.css"/>'/>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700&display=swap&subset=korean" rel="stylesheet" type="text/css">
     <!-- timepicker -->
@@ -32,6 +33,13 @@
     <script src="/assets/js/jquery.bxslider.min.js"></script>
     <!-- timepicker -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script>
+    //전역변수
+    <c:if test="${not empty postUrl}">
+        var postUrl = '<c:url value="${postUrl}"/> ';
+    </c:if>
+    var isLogin ='<c:out value="${sessionScope.login}"/>';
+    </script>
 </head>
 <body>
     <div class="scroll-t" id="topcontrol">

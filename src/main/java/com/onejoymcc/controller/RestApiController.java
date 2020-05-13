@@ -24,7 +24,7 @@ import com.onejoymcc.board.common.FileVO;
 import com.onejoymcc.common.support.MessageSource;
 import com.onejoymcc.common.support.NumberGender;
 import com.onejoymcc.dao.CategoryDAO;
-import com.onejoymcc.mall.dao.MgProductDAO;
+import com.onejoymcc.dao.MgProductDAO;
 import com.onejoymcc.vo.MgCommonVO;
 import com.onejoymcc.vo.ProductVO;
 

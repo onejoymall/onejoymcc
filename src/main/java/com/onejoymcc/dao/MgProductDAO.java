@@ -1,4 +1,4 @@
-package com.onejoymcc.mall.dao;
+package com.onejoymcc.dao;
 
 import java.sql.SQLException;
 import java.util.List;

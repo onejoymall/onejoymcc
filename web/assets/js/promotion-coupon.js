@@ -3,13 +3,14 @@ $(function(){
     $("button[name='detail']").click(function(){
         $(".modal").attr("style", "display:block");
     });
+
     $(".modal-close").click(function(){
         $(".modal").attr("style", "display:none");
     });
     
     // 혜택구분
-    $('input[name=discount-radio]').click(function(){
-        if($('input[name=discount-radio]:checked').val() == "one"){
+    $('input[name=coupon_sale_type]').on("input change click",function(){
+        if($('input[name=coupon_sale_type]:checked').val() == "amount"){
             $('tr.discount-detail1').attr('style','display:table-row');
             $('tr.discount-detail2').attr('style','display:none')
             $('tr.discount-detail2 input[type=text]').val('');
@@ -22,22 +23,47 @@ $(function(){
     })
     // option-coupon
     $('.option-box').change(function(){
-        var state=$('.option-box option:selected').val();
+        var state=$('.option-box option:selected').attr("data-id");
         $('.option-select, .option-wrap').hide();
         $('.' + state + '-box, #' + state + '-select').show();
-        $('#option2-select option:eq(0)').trigger('change');
-        $('#option3-select option:eq(0)').trigger('change');
+        $('#option2-select').val("J").trigger('change');
+        $('#option3-select').val("L").trigger('change');
+        
+        if(state == 'option1'){
+        	$('.option1-box').show();
+        	$('.option0-box').show(); 
+        }else{
+        	$('.option0-box').hide();
+        }
+        if(state == 'option2'){
+        	$('.option1-box').hide(); 
+        }
     });
     $('.option-box, #option2-select, #option3-select').change(function(){
         $('.option-wrap').find('option:eq(0)').trigger('change');
     });
     
     $('#option2-select').change(function() {
-        var state1 = $('#option2-select option:selected').val();
+        var state1 = $('#option2-select option:selected').attr("data-id");
         var state1i = $('#option2-select option:selected').index();
         var state1ii = state1i + 1;
+        var stateOri = state1ii; 
+        if(state1ii == 3){
+        	$('.option1-box').show(); 
+        	$(".option1-box1").hide();
+        	$("input[name=coupon_issue_time]:radio[value='A']").prop("checked",true);
+        }else{
+        	$('.option1-box').hide(); 
+        	$(".option1-box1").show();
+        	$(".option2-box3").hide();
+        	$("input[name=coupon_issue_time]:radio[value='N']").prop("checked",true);
+        }
+        if(state1ii == 5) state1ii = 2;
+        if(state1ii == 6) state1ii = 2;
         $('.option2-box tbody').children('tr').attr('style','display:none');
         $('.option2-box' + state1ii).show();
+        if(stateOri == 6) $(".option2-box2-1").hide();
+        if(state1ii == 7) $('.option2-box2-2').show();
     });
 
     $('#box2-out-select1').change(function() {
@@ -88,28 +114,30 @@ $(function(){
         }
     });
     $('#option3-select').change(function() {
-        var state1 = $('#option3-select option:selected').val();
+        var state1 = $('#option3-select option:selected').attr("data-id");
         if ( state1 == 'option3-1' ) {
             $('.option3-box tbody').children('tr').attr('style','display:none');
             $('.option3-box1').show();
+            $('.option1-box').show(); 
         }
         else if ( state1 == 'option3-2' ) {
             $('.option3-box tbody').children('tr').attr('style','display:none');
             $('.option3-box2').show();
+            $('.option1-box').hide();
         }
         $("#option2-select option:eq(0)").prop("selected", true);
     });
     // 발급시점
-    $('input:radio[name=iss]').on('click', function(){
-        if($("input[name=iss]:checked").val() == "IS"){
-            $("input:text[name=IS-ck]").attr("disabled",true);
+    $('input:radio[name=coupon_issue_time]').on('click', function(){
+        if($("input[name=coupon_issue_time]:checked").val() == "E"){
+            $("input:text[name=coupon_anniversary_before]").attr("disabled",true);
             
-        }else{$("input:text[name=IS-ck]").attr("disabled",false);
+        }else{$("input:text[name=coupon_anniversary_before]").attr("disabled",false);
         }
     });
 
-    $('input[name=option1-radio]').click(function(){
-        if($('input[name=option1-radio]:checked').val() == "option1-rd2-click"){
+    $('input[name=coupon_issue_time]').click(function(){
+        if($('input[name=coupon_issue_time]:checked').val() == "S"){
             $('#option1-rd2-txt').attr('style','display:table-row');
         }else{
             $('#option1-rd2-txt').attr('style','display:none');
@@ -218,9 +246,10 @@ $(function(){
     // 주문기간 설정
     $('input:radio[name=iss-day]').on('click', function(){
         if($("input[name=iss-day]:checked").val() == "D1"){
-            $("input[name=day-iss1]").attr("disabled",true);
+            $("input[name=coupon_issue_order_end]").attr("disabled",true);
             
-        }else{$("input[name=day-iss1]").attr("disabled",false);
+        }else{
+        	$("input[name=coupon_issue_order_end]").attr("disabled",false);
         }
     });
     $('input:radio[name=iss-day1]').on('click', function(){
@@ -374,11 +403,11 @@ $(function(){
             $('#option2-rd2-txt1').attr('style','display:none');
         }
     })
-    $('input:radio[name=iss1-1]').on('click', function(){
-        if($("input[name=iss1-1]:checked").val() == "IS1"){
-            $("input:text[name=IS-ck1]").attr("disabled",true);
+    $('input:radio[name=coupon_issue_time]').on('change', function(){
+        if($("input[name=coupon_issue_time]:checked").val() == "A"){
+            $("input:text[name=coupon_anniversary_before]").attr("disabled",true);
             
-        }else{$("input:text[name=IS-ck1]").attr("disabled",false);
+        }else{$("input:text[name=coupon_anniversary_before]").attr("disabled",false);
         }
     });
     $('input[name=iss1-2]').click(function(){

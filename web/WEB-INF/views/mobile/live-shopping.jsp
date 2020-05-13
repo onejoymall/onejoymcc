@@ -16,11 +16,35 @@
             <div class="list-wrap">
                 <h3 class="p-2">인기 상품</h3>
                 <div class="live-shopping-list shop-slider">
+                	<c:if test="${not empty productList}">
+                    <c:forEach var="list" items="${productList}">
                     <div class="live-shopping-item">
-                        <a href="/view">
+                        <a href="/view?product_cd=${list.product_cd}">
                             <div class="imgbox">
-                                <img src="../../assets/img/live-img1.png" />
-                                <span class="video-time">8:12</span>
+                                <img src='${list.file_1}' onerror="this.src='http://placehold.it/340x190'" height="190">
+                                <!-- <span class="video-time">8:12</span> -->
+                                <!-- <div class="sold-out"><p>SOLD OUT</p></div> -->
+                            </div>
+                        </a>
+                        <div class="item-info">
+                            <a href="/view"><p class="live-shopping-title">${list.product_name}</p></a>
+                            <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</ins><del>
+                           	<span class="price-before"><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</span></del></p>
+                            <p class="live-shopping-user"><a href="#">${list.product_user_ud}</a></p>
+                            <p class="live-shopping-score">
+                                <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
+                                <span class="score-text">5,324개 평가</span>
+                                <span class="score-number">4.5</span>
+                            </p>
+                        </div>
+                    </div>
+                    </c:forEach>
+                    </c:if>
+                    <div class="live-shopping-item">
+                    	<a href="/view">
+                            <div class="imgbox">
+                                <img src="../assets/img/live-img1.png" />
+                                <!-- <span class="video-time">8:12</span> -->
                                 <div class="sold-out"><p>SOLD OUT</p></div>
                             </div>
                         </a>
@@ -35,61 +59,26 @@
                             </p>
                         </div>
                     </div>
-                    <div class="live-shopping-item">
-                        <a href="#">
-                           <div class="imgbox">
-                                <img src="../../assets/img/live-img2.png" />
-                                <span class="video-time">5:25</span>
-                                <div class="sold-out"><p>SOLD OUT</p></div>
-                           </div>
-                        </a>
-                        <div class="item-info">
-                            <a href="#"><p class="live-shopping-title">✨아르댓 2020 신상 라인 코트✨ 20% 할인 받아서 구매했어요💗</p></a>
-                            <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                            <p class="live-shopping-user"><a href="#">Kate Ilacad</a></p>
-                            <p class="live-shopping-score">
-                                <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
-                                <span class="score-text">5,324개 평가</span>
-                                <span class="score-number">4.5</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="live-shopping-item">
-                        <a href="#">
-                            <div class="imgbox">
-                                <img src="../../assets/img/live-img3.png" />
-                                <span class="video-time">12:36</span>
-                                <div class="sold-out active"><p>SOLD OUT</p></div>
-                           </div>
-                        </a>
-                        <div class="item-info">
-                            <a href="#"><p class="live-shopping-title">eng) GRWM 겟레디윗미+Vlog 같이 준비 해요</p></a>
-                            <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                            <p class="live-shopping-user"><a href="#">Kate Ilacad</a></p>
-                            <p class="live-shopping-score">
-                                <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
-                                <span class="score-text">5,324개 평가</span>
-                                <span class="score-number">4.5</span>
-                            </p>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="list-wrap">
                 <h3 class="p-2">할인 상품</h3>
                 <div class="live-shopping-list shop-slider">
+                    <c:if test="${not empty productSpList}">
+                	<c:forEach var="list" items="${productSpList}">
                     <div class="live-shopping-item">
-                        <a href="product-page.html">
+                        <a href="/view?product_cd=${list.product_cd}">
                             <div class="imgbox">
-                                <img src="../../assets/img/live-img1.png" />
-                                <span class="video-time">8:12</span>
-                                <div class="sold-out"><p>SOLD OUT</p></div>
+                                <img src='${list.file_1}' onerror="this.src='http://placehold.it/340x190'" height="190">
+                                <!-- <span class="video-time">8:12</span> -->
+                                <!-- <div class="sold-out"><p>SOLD OUT</p></div> -->
                             </div>
                         </a>
                         <div class="item-info">
-                            <a href="product-page.html"><p class="live-shopping-title">발뮤다 가습기 한달사용 솔직후기! 발뮤다 가습기가 인기 있는 이유는? 세 줄까지 작성 가능 </p></a>
-                            <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                            <p class="live-shopping-user"><a href="#">Kate Ilacad</a></p>
+                            <a href="/view"><p class="live-shopping-title">${list.product_name}</p></a>
+                            <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</ins><del>
+                           	<span class="price-before"><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</span></del></p>
+                            <p class="live-shopping-user"><a href="#">${list.product_user_ud}</a></p>
                             <p class="live-shopping-score">
                                 <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
                                 <span class="score-text">5,324개 평가</span>
@@ -97,61 +86,28 @@
                             </p>
                         </div>
                     </div>
-                    <div class="live-shopping-item">
-                        <a href="#">
-                           <div class="imgbox">
-                                <img src="../../assets/img/live-img2.png" />
-                                <span class="video-time">5:25</span>
-                                <div class="sold-out"><p>SOLD OUT</p></div>
-                           </div>
-                        </a>
-                        <div class="item-info">
-                            <a href="#"><p class="live-shopping-title">✨아르댓 2020 신상 라인 코트✨ 20% 할인 받아서 구매했어요💗</p></a>
-                            <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                            <p class="live-shopping-user"><a href="#">Kate Ilacad</a></p>
-                            <p class="live-shopping-score">
-                                <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
-                                <span class="score-text">5,324개 평가</span>
-                                <span class="score-number">4.5</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="live-shopping-item">
-                        <a href="#">
-                            <div class="imgbox">
-                                <img src="../../assets/img/live-img3.png" />
-                                <span class="video-time">12:36</span>
-                                <div class="sold-out active"><p>SOLD OUT</p></div>
-                           </div>
-                        </a>
-                        <div class="item-info">
-                            <a href="#"><p class="live-shopping-title">eng) GRWM 겟레디윗미+Vlog 같이 준비 해요</p></a>
-                            <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                            <p class="live-shopping-user"><a href="#">Kate Ilacad</a></p>
-                            <p class="live-shopping-score">
-                                <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
-                                <span class="score-text">5,324개 평가</span>
-                                <span class="score-number">4.5</span>
-                            </p>
-                        </div>
-                    </div>
+                    </c:forEach>
+                    </c:if>
                 </div>
             </div>
             <div class="list-wrap">
                 <h3 class="p-2">상품</h3>
                 <div class="live-shopping-list shop-slider">
+                    <c:if test="${not empty productList}">
+                	<c:forEach var="list" items="${productList}">
                     <div class="live-shopping-item">
-                        <a href="product-page.html">
+                        <a href="/view?product_cd=${list.product_cd}">
                             <div class="imgbox">
-                                <img src="../../assets/img/live-img1.png" />
-                                <span class="video-time">8:12</span>
-                                <div class="sold-out"><p>SOLD OUT</p></div>
+                                <img src='${list.file_1}' onerror="this.src='http://placehold.it/340x190'" height="190">
+                                <!-- <span class="video-time">8:12</span> -->
+                                <!-- <div class="sold-out"><p>SOLD OUT</p></div> -->
                             </div>
                         </a>
                         <div class="item-info">
-                            <a href="product-page.html"><p class="live-shopping-title">발뮤다 가습기 한달사용 솔직후기! 발뮤다 가습기가 인기 있는 이유는? 세 줄까지 작성 가능 </p></a>
-                            <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                            <p class="live-shopping-user"><a href="#">Kate Ilacad</a></p>
+                            <a href="/view"><p class="live-shopping-title">${list.product_name}</p></a>
+                            <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</ins><del>
+                           	<span class="price-before"><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</span></del></p>
+                            <p class="live-shopping-user"><a href="#">${list.product_user_ud}</a></p>
                             <p class="live-shopping-score">
                                 <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
                                 <span class="score-text">5,324개 평가</span>
@@ -159,106 +115,8 @@
                             </p>
                         </div>
                     </div>
-                    <div class="live-shopping-item">
-                        <a href="#">
-                           <div class="imgbox">
-                                <img src="../../assets/img/live-img2.png" />
-                                <span class="video-time">5:25</span>
-                                <div class="sold-out"><p>SOLD OUT</p></div>
-                           </div>
-                        </a>
-                        <div class="item-info">
-                            <a href="#"><p class="live-shopping-title">✨아르댓 2020 신상 라인 코트✨ 20% 할인 받아서 구매했어요💗</p></a>
-                            <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                            <p class="live-shopping-user"><a href="#">Kate Ilacad</a></p>
-                            <p class="live-shopping-score">
-                                <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
-                                <span class="score-text">5,324개 평가</span>
-                                <span class="score-number">4.5</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="live-shopping-item">
-                        <a href="#">
-                            <div class="imgbox">
-                                <img src="../../assets/img/live-img3.png" />
-                                <span class="video-time">12:36</span>
-                                <div class="sold-out active"><p>SOLD OUT</p></div>
-                           </div>
-                        </a>
-                        <div class="item-info">
-                            <a href="#"><p class="live-shopping-title">eng) GRWM 겟레디윗미+Vlog 같이 준비 해요</p></a>
-                            <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                            <p class="live-shopping-user"><a href="#">Kate Ilacad</a></p>
-                            <p class="live-shopping-score">
-                                <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
-                                <span class="score-text">5,324개 평가</span>
-                                <span class="score-number">4.5</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="list-wrap">
-                <h3 class="p-2">상품</h3>
-                <div class="live-shopping-list shop-slider">
-                    <div class="live-shopping-item">
-                        <a href="product-page.html">
-                            <div class="imgbox">
-                                <img src="../../assets/img/live-img1.png" />
-                                <span class="video-time">8:12</span>
-                                <div class="sold-out"><p>SOLD OUT</p></div>
-                            </div>
-                        </a>
-                        <div class="item-info">
-                            <a href="product-page.html"><p class="live-shopping-title">발뮤다 가습기 한달사용 솔직후기! 발뮤다 가습기가 인기 있는 이유는? 세 줄까지 작성 가능 </p></a>
-                            <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                            <p class="live-shopping-user"><a href="#">Kate Ilacad</a></p>
-                            <p class="live-shopping-score">
-                                <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
-                                <span class="score-text">5,324개 평가</span>
-                                <span class="score-number">4.5</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="live-shopping-item">
-                        <a href="#">
-                           <div class="imgbox">
-                                <img src="../../assets/img/live-img2.png" />
-                                <span class="video-time">5:25</span>
-                                <div class="sold-out"><p>SOLD OUT</p></div>
-                           </div>
-                        </a>
-                        <div class="item-info">
-                            <a href="#"><p class="live-shopping-title">✨아르댓 2020 신상 라인 코트✨ 20% 할인 받아서 구매했어요💗</p></a>
-                            <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                            <p class="live-shopping-user"><a href="#">Kate Ilacad</a></p>
-                            <p class="live-shopping-score">
-                                <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
-                                <span class="score-text">5,324개 평가</span>
-                                <span class="score-number">4.5</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="live-shopping-item">
-                        <a href="#">
-                            <div class="imgbox">
-                                <img src="../../assets/img/live-img3.png" />
-                                <span class="video-time">12:36</span>
-                                <div class="sold-out active"><p>SOLD OUT</p></div>
-                           </div>
-                        </a>
-                        <div class="item-info">
-                            <a href="#"><p class="live-shopping-title">eng) GRWM 겟레디윗미+Vlog 같이 준비 해요</p></a>
-                            <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                            <p class="live-shopping-user"><a href="#">Kate Ilacad</a></p>
-                            <p class="live-shopping-score">
-                                <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
-                                <span class="score-text">5,324개 평가</span>
-                                <span class="score-number">4.5</span>
-                            </p>
-                        </div>
-                    </div>
+                    </c:forEach>
+                    </c:if>
                 </div>
             </div>
         </div>

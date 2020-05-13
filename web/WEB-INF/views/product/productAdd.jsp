@@ -46,6 +46,17 @@
                             <input type="file" id="pdImg5" name="uploadfile5" class="uploadBtn">
                         </td>
                     </tr>
+                    <tr>
+                        <th>썸네일 이미지 등록</th>
+                        <td>
+                            <img src="" onerror="this.src='http://placehold.it/150'" width="150" class="file_link1"/>
+                            <div class="fileBox">
+                                <input type="text" class="fileName" name="fileName" readonly="readonly">
+                                <label for="pdImg1" class="btn_file">파일찾기</label>
+                                <input type="file" id="pdImg1" name="uploadfile" class="uploadBtn">
+                            </div>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
                 <h3>기본 정보</h3>

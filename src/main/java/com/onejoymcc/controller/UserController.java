@@ -12,6 +12,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mobile.device.Device;
+import org.springframework.mobile.device.DeviceUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -92,5 +94,37 @@ public class UserController {
         return "redirect:/sign/login"; // 로그아웃 후 로그인화면으로 이동
     }
 
+    @RequestMapping(value = "/sign/signup")
+    public String mallSignup(@RequestParam HashMap params, ModelMap model, HttpServletRequest request) throws Exception {
+//        List<Map<String, Object>> userList = null;
+//        Map<String, String> param = new HashMap<String, String>();
+
+        try{
+            //
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        model.addAttribute("style", "joinform");
+        model.addAttribute("postUrl","/sign/signupProc");
+
+        /*Device device = DeviceUtils.getCurrentDevice(request);
+        if(device.isMobile()){
+            return "mobile/join";
+        } else {
+            return "mall/signup";
+        }*/
+        return "mall/signup";
+    }
+
+    @RequestMapping(value = "/sign/signUpDone")
+    public String signUpDone( ModelMap model,HttpServletRequest request,@RequestParam HashMap params)throws Exception{
+        Device device = DeviceUtils.getCurrentDevice(request);
+        model.addAttribute("style", "mem-com");
+        if(device.isMobile()){
+            return "mobile/mem-com";
+        } else {
+            return "mall/signUpDone";
+        }
+    }
 
 }

@@ -31,4 +31,7 @@ public class UserDAO {
         sql.insert("mall.UserMapper.insertUser", params);
     }
 
+    public void insertEmailAuth(Map<String, String> params) throws SQLException {
+        sql.insert("mall.UserMapper.insertEmailAuth", params);
+    }
 }

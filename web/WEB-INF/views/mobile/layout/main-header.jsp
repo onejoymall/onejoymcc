@@ -19,14 +19,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <link href="<c:url value="/assets/css/reset.css" />" rel="stylesheet" type="text/css">
     <link href="<c:url value="/assets/css/mobile/common-mobile.css" />" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/assets/css/mobile/commonsub.css" />" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400&display=swap&subset=korean" rel="stylesheet">
     <link href="<c:url value="/assets/css/jquery.bxslider.css" />" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' href='<c:url value="/assets/plugins/toast/jquery.toast.min.css"/>'/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
     <script src="<c:url value="/assets/js/jquery.bxslider.min.js" />"></script>
     <script src="<c:url value="/assets/js/common-mobile.js" />"></script>
+    <!-- timepicker -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script>
+    //전역변수
+    <c:if test="${not empty postUrl}">
+        var postUrl = '<c:url value="${postUrl}"/> ';
+    </c:if>
+    var isLogin ='<c:out value="${sessionScope.login}"/>';
+    </script>
     </head>
     <body class="pt-48 black">
     <header class="header live">
@@ -40,3 +52,4 @@
     </form>
     </div>
     </header>
+

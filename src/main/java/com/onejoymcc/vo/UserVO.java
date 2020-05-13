@@ -1,4 +1,4 @@
-package com.onejoymcc.mall.vo;
+package com.onejoymcc.vo;
 
 public class UserVO {
     private String email;

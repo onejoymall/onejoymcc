@@ -17,9 +17,9 @@ import com.onejoymcc.common.support.MessageSource;
 import com.onejoymcc.common.support.NumberGender;
 import com.onejoymcc.mall.dao.*;
 import com.onejoymcc.mall.vo.*;
-//import com.onejoymcc.manager.dao.MgSystemDAO;
-//import com.onejoymcc.manager.dao.QnaDAO;
-//import com.onejoymcc.manager.vo.ProductVO;
+import com.onejoymcc.manager.dao.MgSystemDAO;
+import com.onejoymcc.manager.dao.QnaDAO;
+import com.onejoymcc.manager.vo.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -60,7 +60,7 @@ public class restapiController {
     @Autowired
     private CurlPost curlPost;
     @Autowired
-/*    private PointDAO pointDAO;
+    private PointDAO pointDAO;
     @Autowired
     private GiveawayDAO giveawayDAO;
     @Autowired
@@ -82,7 +82,7 @@ public class restapiController {
     @Autowired
     private MgSystemDAO mgSystemDAO;
     @Autowired
-    private CouponDAO couponDAO;*/
+    private CouponDAO couponDAO;
     @Value("${downloadPath}")
     private String downloadPath;
     @Value("${downloadEditorPath}")

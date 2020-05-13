@@ -18,6 +18,36 @@
 <%--                <button type="button" class="btn-default" name="copy"><i class="exel-ic"></i>상품 정보 다운로드</button>--%>
             </div>
             <form name="defaultForm" id="defaultForm" method="post" enctype="multipart/form-data" action="<c:url value="/Manager/productAddProc"/>">
+            	<h3>라이브 정보</h3>
+                <table class="goods-detail-table">
+                    <colgroup>
+                        <col width="142px">
+                        <col width="800px">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th>동영상 구분</th>
+                        <td>
+                            <input type="radio" id="goods-sale" name="product_live_type" value="U" checked>
+                            <label for="goods-sale">유튜브</label>
+                            <input type="radio" id="goods-notsale" name="product_live_type" value="M">
+                            <label for="goods-notsale">직접 업로드</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>유튜브 영상 ID</th>
+                        <td>
+                            <input type="text" name="product_youtube_id" placeholder="ex) Xq0r6OHPsQc">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>동영상 등록</th>
+                        <td>
+                            <input type="file" id="pdImg5" name="uploadfile5" class="uploadBtn">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
                 <h3>기본 정보</h3>
                 <table class="goods-detail-table">
                     <colgroup>

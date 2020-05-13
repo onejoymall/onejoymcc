@@ -2,7 +2,7 @@ package com.onejoymcc.vo;
 
 import com.onejoymcc.board.common.SearchVO;
 
-public class MgUserVO  extends SearchVO {
+public class MgUserVO extends SearchVO {
     private String user_id;
     private String username;
     private String email;

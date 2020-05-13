@@ -19,5 +19,10 @@
         <beans:property name="suffix" value=".jsp" />
     </beans:bean>
 
+    <!-- 모바일 버전 -->
+    <mvc:interceptors>
+        <beans:bean class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor" />
+    </mvc:interceptors>
+
     <context:property-placeholder location="classpath*:/properties/*.properties" />
 </beans:beans>

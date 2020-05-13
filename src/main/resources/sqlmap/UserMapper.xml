@@ -25,6 +25,18 @@
         <if test="phone != null"> <![CDATA[AND A.phone= #{phone} ]]></if>
     </select>
 
+    <insert id="insertEmailAuth" parameterType="String">
+        <![CDATA[
+        insert into email_auth(
+        email,email_auth_code)
+      VALUES (
+        #{email},
+        #{email_auth_code}
+        )
+        on duplicate KEY update
+        email_auth_code=#{email_auth_code}
+        ]]>
+    </insert>
 
 </mapper>
 

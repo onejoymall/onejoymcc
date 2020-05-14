@@ -20,6 +20,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=yes">
     <link href="<c:url value="/assets/css/reset.css" />" rel="stylesheet" type="text/css">
     <link href="<c:url value="/assets/css/mobile/common-mobile.css" />" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/assets/css/mobile/commonsub.css" />" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' href='<c:url value="/assets/plugins/toast/jquery.toast.min.css"/>'/>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700&display=swap&subset=korean" rel="stylesheet">
     <!--
     [if lt IE 9]>
@@ -31,7 +33,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
     <script src="<c:url value="/assets/js/common-mobile.js" />"></script>
+    <!-- timepicker -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script>
+    //전역변수
+    <c:if test="${not empty postUrl}">
+        var postUrl = '<c:url value="${postUrl}"/> ';
+    </c:if>
+    var isLogin ='<c:out value="${sessionScope.login}"/>';
+    </script>
     </head>
 
     <body class="pt-48 pb-5 black">

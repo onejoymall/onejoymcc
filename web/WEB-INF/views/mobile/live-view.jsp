@@ -9,49 +9,13 @@
         <div class="closeBox">
             <button class="closeBtn"></button>  
         </div>
-        <div class="scroll">
-            <select class="width-100 my-1">
-                <option value="" selected>옵션선택</option>
-            </select>
-            <div class="option-box2 mb-1">
-                <div class="point-title">색상 선택</div>
-                <div class="optionBtn-wrap">
-                    <button type="button" class="optionBtn on">red</button>
-                    <button type="button" class="optionBtn">black</button>
-                    <button type="button" class="optionBtn">white</button>
-                    <button type="button" class="optionBtn">blue</button>
-                </div>
-            </div>
-            <div class="option-box2 mb-1">
-                <div class="point-title">색상 선택</div>
-                <div class="optionBtn-wrap">
-                    <input type="radio" id="rdOption1" name="rdOption"><label for="rdOption1" class="ra-icon">red</label>
-                    <input type="radio" id="rdOption2" name="rdOption"><label for="rdOption2" class="ra-icon">black</label>
-                    <input type="radio" id="rdOption3" name="rdOption"><label for="rdOption3" class="ra-icon">white</label>
-                    <input type="radio" id="rdOption4" name="rdOption"><label for="rdOption4" class="ra-icon">blue</label>
-                </div>
-            </div>
+        <%--<div class="scroll">
+            ${option}
             <div class="purchaseBox mb-1">
                 <div class="item-delete">
                     <i class="ri-close-line"></i>
                 </div>
-                <h4>컵누들 쌀국수컵누들 쌀국수컵누들 쌀국수컵누들 쌀국수컵누들 쌀국수</h4>
-                <ul class="flexbetween">
-                    <li class="width-35">
-                        <div class="number-group">
-                           <button class="button number-minus"></button>
-                           <input type="number" name="number" value="1">
-                           <button class="button number-plus"></button>
-                        </div>
-                    </li>
-                    <li><h3>1,500<span class="text-sm">원</span></h3></li>
-                </ul>
-            </div>
-            <div class="purchaseBox mb-1">
-                <div class="item-delete">
-                    <i class="ri-close-line"></i>
-                </div>
-                <h4>컵누들 쌀국수컵누들 쌀국수컵누들 쌀국수컵누들 쌀국수컵누들 쌀국수</h4>
+                <h4>${list.product_name}</h4>
                 <ul class="flexbetween">
                     <li class="width-35">
                         <div class="number-group">
@@ -60,19 +24,19 @@
                            <button class="button number-plus"></button>
                         </div>
                     </li>
-                    <li><h3>1,500<span class="text-sm">원</span></h3></li>
+                    <li><h3><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" /><span class="text-sm">원</span></h3></li>
                 </ul>
             </div>
             <ul class="flexbetween mt-2 mb-5">
-                <li>
+               &lt;%&ndash; <li>
                     <h3>총 합계금액</h3>
                 </li>
                 <li>
                     <h2 class="red">4,500<span class="text-sm">원</span></h2>
-                </li>
+                </li>&ndash;%&gt;
             </ul>
-        </div>
-        <button class="footerBtn">바로구매</button>
+        </div>--%>
+        <button id="paymentSubmit" class="footerBtn">바로구매</button>
     </div>
     
 </div>
@@ -135,11 +99,11 @@
     </div>
 </div>
 
-
+<form name="defaultForm" id="defaultForm" method="POST" action="http://onejoy-life.com/product/productPayment">
     <section class="subheader">
         <div class="goods-slider-wrap">
             <div class="iframebox" style="padding-bottom:56%; position:relative;">
-               <iframe style="position:absolute;" src="https://www.youtube.com/embed/M3VKMBHTdb0?feature=oembed" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+               <iframe style="position:absolute;" src="https://www.youtube.com/embed/${list.product_youtube_id}?feature=oembed" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
            </div>
             <div class="share-list">
                 <a href="#none"><i class="facebook-ic"></i></a>
@@ -149,7 +113,7 @@
         </div>
     </section>
     <section class="wrap">
-       <h2 class="my-2">MLBB is not too far from you – Velvet Lip Tint from 3CE</h2>
+       <h2 class="my-2">${list.product_name}</h2>
        <ul class="between">
            <li>
                <i class="ri-heart-line"></i>
@@ -167,15 +131,15 @@
        <hr class="grey">
        <ul class="flexbetween py-05 mt-2">
            <li>판매가</li>
-           <li class="line-through grey">469,000원</li>
+           <li class="line-through grey"><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</li>
        </ul>
-       <ul class="flexbetween py-05">
+       <%--<ul class="flexbetween py-05">
            <li>세일</li>
            <li class="line-through grey">5,400원</li>
-       </ul>
+       </ul>--%>
        <ul class="flexbetween py-05">
            <li>판매가</li>
-           <li class="text-lg text-bold red">415,000<span class="text-sm">원</span></li>
+           <li class="text-lg text-bold red"><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" /><span class="text-sm">원</span></li>
        </ul>
        <div class="my-1">
             <hr class="grey">
@@ -312,7 +276,14 @@ More information is in the video! so never skip it!😊🤪 <br><br>
         </div>
         </div>
     </section>
-    <button class="btn btn_bottom btn-redcover" id="btn_purchase">구매하기</button>
+    <button class="btn btn_bottom btn-redcover" id="paymentSubmit">구매하기</button> <%-- btn_purchase--%>
+    <input type="hidden" name="payment_order_quantity" value="1">
+    <input type="hidden" name="order_max" value="${list.product_max_limit}" />
+    <input type="hidden" name="order_min" value="${list.product_min_limit}" />
+    <input type="hidden" name="product_delivery_bundle_yn" value="${list.product_delivery_bundle_yn}" />
+    <input type="hidden" name="product_user_ud" value="${list.product_user_ud}" />
+    <input type="hidden" name="product_cd" value="${list.product_cd}" />
+</form>
 </body>
 <script>
 $(document).ready(function(){
@@ -401,4 +372,4 @@ function move(num){
     $('html').animate({scrollTop : offset.top - 100}, 400);
 }
 </script>
-</html>
+<%@ include file="/WEB-INF/views/mobile/layout/footer.jsp" %>

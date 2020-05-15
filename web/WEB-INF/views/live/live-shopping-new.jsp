@@ -25,15 +25,22 @@
                             <div class="live-shopping-item">
                                 <a href="/view?product_cd=${list.product_cd}">
                                     <div class="imgbox">
-                                        <img src='${list.file_1}' onerror="this.src='http://placehold.it/340x190'" height="190">
+                                    	<c:if test="${list.product_live_type == 'U'}">
+                                        	<img src='http://img.youtube.com/vi/${list.product_youtube_id}/0.jpg' onerror="this.src='http://placehold.it/340x190'" height="190">
+                                       	</c:if>
+                                       	<c:if test="${list.product_live_type == 'M'}">
+                                        	<video style="width:100%">
+												<source src="http://onejoy-life.com${list.file_6}" type="video/mp4">
+											</video>
+                                       	</c:if>
                                         <!-- <span class="video-time">8:12</span> -->
                                         <!-- <div class="sold-out"><p>SOLD OUT</p></div> -->
                                     </div>
                                 </a>
                                 <div class="item-info">
                                     <a href="/view"><p class="live-shopping-title">${list.product_name}</p></a>
-                                    <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</ins><del>
-                                   	<span class="price-before"><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</span></del></p>
+                                    <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</ins><del>
+                                   	<span class="price-before"><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</span></del></p>
                                     <p class="live-shopping-user"><a href="#">${list.product_user_ud}</a></p>
                                     <p class="live-shopping-score">
                                         <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
@@ -44,25 +51,6 @@
                             </div>
                             </c:forEach>
                             </c:if>
-                            <div class="live-shopping-item">
-                                <a href="/view">
-                                    <div class="imgbox">
-                                        <img src="../assets/img/live-img1.png" />
-                                        <!-- <span class="video-time">8:12</span> -->
-                                        <div class="sold-out"><p>SOLD OUT</p></div>
-                                    </div>
-                                </a>
-                                <div class="item-info">
-                                    <a href="/view"><p class="live-shopping-title">발뮤다 가습기 한달사용 솔직후기! 발뮤다 가습기가 인기 있는 이유는? 세 줄까지 작성 가능 </p></a>
-                                    <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                                    <p class="live-shopping-user"><a href="#">Kate Ilacad</a></p>
-                                    <p class="live-shopping-score">
-                                        <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
-                                        <span class="score-text">5,324개 평가</span>
-                                        <span class="score-number">4.5</span>
-                                    </p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="list-wrap">
@@ -73,15 +61,22 @@
                             <div class="live-shopping-item">
                                 <a href="/view?product_cd=${list.product_cd}">
                                     <div class="imgbox">
-                                        <img src='${list.file_1}' onerror="this.src='http://placehold.it/340x190'" height="190">
+                                        <c:if test="${list.product_live_type == 'U'}">
+                                        	<img src='http://img.youtube.com/vi/${list.product_youtube_id}/0.jpg' onerror="this.src='http://placehold.it/340x190'" height="190">
+                                       	</c:if>
+                                       	<c:if test="${list.product_live_type == 'M'}">
+                                        	<video style="width:100%">
+												<source src="http://onejoy-life.com${list.file_6}" type="video/mp4">
+											</video>
+                                       	</c:if>
                                         <!-- <span class="video-time">8:12</span> -->
                                         <!-- <div class="sold-out"><p>SOLD OUT</p></div> -->
                                     </div>
                                 </a>
                                 <div class="item-info">
                                     <a href="/view"><p class="live-shopping-title">${list.product_name}</p></a>
-                                    <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</ins><del>
-                                   	<span class="price-before"><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</span></del></p>
+                                    <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</ins><del>
+                                   	<span class="price-before"><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</span></del></p>
                                     <p class="live-shopping-user"><a href="#">${list.product_user_ud}</a></p>
                                     <p class="live-shopping-score">
                                         <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
@@ -164,15 +159,22 @@
                             <div class="live-shopping-item">
                                 <a href="/view?product_cd=${list.product_cd}">
                                     <div class="imgbox">
-                                        <img src='${list.file_1}' onerror="this.src='http://placehold.it/340x190'" height="190">
+                                        <c:if test="${list.product_live_type == 'U'}">
+                                        	<img src='http://img.youtube.com/vi/${list.product_youtube_id}/0.jpg' onerror="this.src='http://placehold.it/340x190'" height="190">
+                                       	</c:if>
+                                       	<c:if test="${list.product_live_type == 'M'}">
+                                        	<video style="width:100%">
+												<source src="http://onejoy-life.com${list.file_6}" type="video/mp4">
+											</video>
+                                       	</c:if>
                                         <!-- <span class="video-time">8:12</span> -->
                                         <!-- <div class="sold-out"><p>SOLD OUT</p></div> -->
                                     </div>
                                 </a>
                                 <div class="item-info">
                                     <a href="/view"><p class="live-shopping-title">${list.product_name}</p></a>
-                                    <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</ins><del>
-                                   	<span class="price-before"><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</span></del></p>
+                                    <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</ins><del>
+                                   	<span class="price-before"><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</span></del></p>
                                     <p class="live-shopping-user"><a href="#">${list.product_user_ud}</a></p>
                                     <p class="live-shopping-score">
                                         <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>

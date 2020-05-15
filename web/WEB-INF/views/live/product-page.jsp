@@ -12,14 +12,21 @@
             <div class="top-area clearfix">
                 <div class="top-left">
                     <div class="iframebox">
-                        <iframe src="https://www.youtube.com/embed/${list.product_youtube_id}?feature=oembed" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    	<c:if test="${list.product_live_type == 'U'}">
+                        	<iframe src="https://www.youtube.com/embed/${list.product_youtube_id}?feature=oembed" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </c:if>
+                        <c:if test="${list.product_live_type == 'M'}">
+	                        <video class="moviebox" id="mov01" poster="" loop="" controls="true" >
+		                        <source src="http://onejoy-life.com${list.file_6}" type="video/mp4" />
+		                    </video>
+	                    </c:if>
                     </div>
                 </div>
                 <div class="summary">
                     <h2 class="product-title">${list.product_name}</h2>
                     <div class="price-area clearfix">
-                        <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</ins><del>
-                        <span class="price-before"><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</span></del></p>
+                        <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</ins><del>
+                        <span class="price-before"><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</span></del></p>
                         <p class="price-s">
                             <span class="onsale">Sale!</span>
                             <span class="onfeatured off">Featured!</span>
@@ -32,7 +39,7 @@
                             <span class="star-num">5</span>
                         </div>
                         <div class="heart-thumb">
-                            <button class="heart-btn">
+                            <button type="button" class="heart-btn">
                                 <span class="heart-i"></span>
                             </button>
                             <span class="heart-count">724</span>
@@ -46,6 +53,8 @@
 		                <input type="hidden" name="product_delivery_bundle_yn" value="${list.product_delivery_bundle_yn}" />
 		                <input type="hidden" name="product_user_ud" value="${list.product_user_ud}" />
 		                <input type="hidden" name="product_cd" value="${list.product_cd}" />
+		                <input type="hidden" name="email" value="${sessionScope.email}" />
+		                <input type="hidden" name="login" value="${sessionScope.login}" />
 	                    <button type="button" class="cart-btn" id="paymentSubmit">구매하기</button>
                     </div>
                 </div>
@@ -75,9 +84,10 @@
                         </ul>
                     </div>
                     <div class="content1" id="sec1">
-                        <div class="content-img" >
+                    	상품상세영역입니다.
+                        <%-- <div class="description-img" >
                             ${list.product_html}
-                        </div>
+                        </div> --%>
                     </div>
                     <div class="content2" id="sec2">
                         <div class="content-reviews">

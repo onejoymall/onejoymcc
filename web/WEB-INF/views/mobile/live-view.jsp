@@ -103,7 +103,14 @@
     <section class="subheader">
         <div class="goods-slider-wrap">
             <div class="iframebox" style="padding-bottom:56%; position:relative;">
-               <iframe style="position:absolute;" src="https://www.youtube.com/embed/${list.product_youtube_id}?feature=oembed" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            	<c:if test="${list.product_live_type == 'U'}">
+               		<iframe style="position:absolute;" src="https://www.youtube.com/embed/${list.product_youtube_id}?feature=oembed" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </c:if>
+                <c:if test="${list.product_live_type == 'M'}">
+                	<video class="moviebox" id="mov01" poster="" loop="" controls="true">
+		               <source src="http://onejoy-life.com${list.file_6}" type="video/mp4" />
+		           </video>
+	           	</c:if>
            </div>
             <div class="share-list">
                 <a href="#none"><i class="facebook-ic"></i></a>
@@ -131,7 +138,7 @@
        <hr class="grey">
        <ul class="flexbetween py-05 mt-2">
            <li>판매가</li>
-           <li class="line-through grey"><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</li>
+           <li class="line-through grey"><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</li>
        </ul>
        <%--<ul class="flexbetween py-05">
            <li>세일</li>
@@ -139,7 +146,7 @@
        </ul>--%>
        <ul class="flexbetween py-05">
            <li>판매가</li>
-           <li class="text-lg text-bold red"><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" /><span class="text-sm">원</span></li>
+           <li class="text-lg text-bold red"><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" /><span class="text-sm">원</span></li>
        </ul>
        <div class="my-1">
             <hr class="grey">
@@ -161,7 +168,7 @@ More information is in the video! so never skip it!😊🤪 <br><br>
            <li><a href="javascript:move(2)">리뷰 <span class="red text-sm">65</span></a></li>
        </ul>        
         <div class="my-1" id="content01">
-           <img src="../../assets/img/3ce.png" alt="" class="width-100">
+           상품상세 영역입니다.
         </div>
     </section>
     <section class="wrap">

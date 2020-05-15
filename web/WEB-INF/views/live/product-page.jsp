@@ -16,7 +16,7 @@
                         	<iframe src="https://www.youtube.com/embed/${list.product_youtube_id}?feature=oembed" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </c:if>
                         <c:if test="${list.product_live_type == 'M'}">
-	                        <video class="moviebox" id="mov01" poster="" loop="" controls="true">
+	                        <video class="moviebox" id="mov01" poster="" loop="" controls="true" >
 		                        <source src="http://onejoy-life.com${list.file_6}" type="video/mp4" />
 		                    </video>
 	                    </c:if>
@@ -84,9 +84,10 @@
                         </ul>
                     </div>
                     <div class="content1" id="sec1">
-                        <div class="content-img" >
+                    	상품상세영역입니다.
+                        <%-- <div class="description-img" >
                             ${list.product_html}
-                        </div>
+                        </div> --%>
                     </div>
                     <div class="content2" id="sec2">
                         <div class="content-reviews">

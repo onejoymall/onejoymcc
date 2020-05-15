@@ -25,7 +25,14 @@
                             <div class="live-shopping-item">
                                 <a href="/view?product_cd=${list.product_cd}">
                                     <div class="imgbox">
-                                        <img src='${list.file_1}' onerror="this.src='http://placehold.it/340x190'" height="190">
+                                    	<c:if test="${list.product_live_type == 'U'}">
+                                        	<img src='http://img.youtube.com/vi/${list.product_youtube_id}/0.jpg' onerror="this.src='http://placehold.it/340x190'" height="190">
+                                       	</c:if>
+                                       	<c:if test="${list.product_live_type == 'M'}">
+                                        	<video style="width:100%">
+												<source src="http://onejoy-life.com${list.file_6}" type="video/mp4">
+											</video>
+                                       	</c:if>
                                         <!-- <span class="video-time">8:12</span> -->
                                         <!-- <div class="sold-out"><p>SOLD OUT</p></div> -->
                                     </div>
@@ -54,7 +61,14 @@
                             <div class="live-shopping-item">
                                 <a href="/view?product_cd=${list.product_cd}">
                                     <div class="imgbox">
-                                        <img src='${list.file_1}' onerror="this.src='http://placehold.it/340x190'" height="190">
+                                        <c:if test="${list.product_live_type == 'U'}">
+                                        	<img src='http://img.youtube.com/vi/${list.product_youtube_id}/0.jpg' onerror="this.src='http://placehold.it/340x190'" height="190">
+                                       	</c:if>
+                                       	<c:if test="${list.product_live_type == 'M'}">
+                                        	<video style="width:100%">
+												<source src="http://onejoy-life.com${list.file_6}" type="video/mp4">
+											</video>
+                                       	</c:if>
                                         <!-- <span class="video-time">8:12</span> -->
                                         <!-- <div class="sold-out"><p>SOLD OUT</p></div> -->
                                     </div>
@@ -145,7 +159,14 @@
                             <div class="live-shopping-item">
                                 <a href="/view?product_cd=${list.product_cd}">
                                     <div class="imgbox">
-                                        <img src='${list.file_1}' onerror="this.src='http://placehold.it/340x190'" height="190">
+                                        <c:if test="${list.product_live_type == 'U'}">
+                                        	<img src='http://img.youtube.com/vi/${list.product_youtube_id}/0.jpg' onerror="this.src='http://placehold.it/340x190'" height="190">
+                                       	</c:if>
+                                       	<c:if test="${list.product_live_type == 'M'}">
+                                        	<video style="width:100%">
+												<source src="http://onejoy-life.com${list.file_6}" type="video/mp4">
+											</video>
+                                       	</c:if>
                                         <!-- <span class="video-time">8:12</span> -->
                                         <!-- <div class="sold-out"><p>SOLD OUT</p></div> -->
                                     </div>

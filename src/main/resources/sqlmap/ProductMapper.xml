@@ -15,7 +15,8 @@
                 (select product_file.file_link from product_file where product_file.key_id = product.product_cd and product_file.file_order = 2) as file_2,
                 (select product_file.file_link from product_file where product_file.key_id = product.product_cd and product_file.file_order = 3) as file_3,
                 (select product_file.file_link from product_file where product_file.key_id = product.product_cd and product_file.file_order = 4) as file_4,
-                (select product_file.file_link from product_file where product_file.key_id = product.product_cd and product_file.file_order = 5) as file_5
+                (select product_file.file_link from product_file where product_file.key_id = product.product_cd and product_file.file_order = 5) as file_5,
+                (select product_file.file_link from product_file where product_file.key_id = product.product_cd and product_file.file_order = 6) as file_6
             FROM product  where 1=1 and product_live_type is not null
         ]]>
         <if test="searchKeyword!=null and searchKeyword!='' and searchType!=''">

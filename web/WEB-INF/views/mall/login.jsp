@@ -35,7 +35,7 @@
                 </label>
                 <a href="<c:url value="/sign/findUserInfo"/>" class="id-pw">아이디/비밀번호 찾기</a>
             </div>
-            <div class="sns-login-wrap">
+            <%--<div class="sns-login-wrap">
                 <div class="sns-login-inner">
                     <div class="sns-login-ttl">
                         <div class="ttl-line"></div>
@@ -44,7 +44,7 @@
                     </div>
                     <button type="button" class="kko-login-btn"><i class="kko-ic"></i>Kakao 계정으로 로그인</button>
                 </div>
-            </div>
+            </div>--%>
             <div class="link-box">
                 <div class="link-join">
                     <ul class="txt-p1">

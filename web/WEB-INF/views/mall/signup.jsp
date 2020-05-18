@@ -125,7 +125,7 @@
                jQuery.ajax({
                    type:"GET",
                    // contentType: 'application/json',
-                   url:"/sign/signupProc",
+                   url:"http://onejoy-life.com//sign/signupProc",
                    // dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
                    data:formData,
                    success : function(data) {
@@ -139,7 +139,7 @@
                                }
                            });
                        }else{
-                           location.href=data.redirectUrl;
+                           location.href="http://onejoymcm.com/";
                        }
 
                    },
@@ -167,7 +167,7 @@
         jQuery.ajax({
             type:"GET",
             // contentType: 'application/json',
-            url:"/sign/authemail",
+            url:"http://onejoy-life.com/sign/authemail",
             // dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
             data:formData,
 
@@ -228,7 +228,7 @@
         jQuery.ajax({
             type:"GET",
             // contentType: 'application/json',
-            url:"/sign/authEmailProc",
+            url:"http://onejoy-life.com/sign/authEmailProc",
             // dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
             data:formData,
 

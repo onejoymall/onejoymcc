@@ -120,10 +120,13 @@ $(document).on("click","#paymentSubmit",function () {
     if(max != 0){
         if (order < min || order > max ) {
             $.toast({
-                text: '최대/최소 주문 수량을 확인하세요.',
+                heading : '최소/최대 주문 수량을 확인해주세요.',
+                text: [
+                    '최소 : ' + min,
+                    '최대 : ' + max,
+                ],
                 showHideTransition: 'plain', //펴짐
                 position: 'top-right',
-                heading: 'Error',
                 icon: 'error',
                 stack: false
             });
@@ -701,7 +704,11 @@ $(document).ready(function(){
                 if(navigator.platform){
                     if(filter.indexOf(navigator.platform.toLowerCase()) < 0) {
                         $.toast({
-                            text: '최대/최소 주문 수량을 확인하세요.',
+                            heading : '최소/최대 주문 수량을 확인해주세요.',
+                            text: [
+                                '최소 : ' + min,
+                                '최대 : ' + max,
+                            ],
                             showHideTransition: 'plain', //펴짐
                             position: 'mid-center',
                             heading: 'Error',
@@ -710,7 +717,11 @@ $(document).ready(function(){
                         });
                     } else {
                         $.toast({
-                            text: '최대/최소 주문 수량을 확인하세요.',
+                            heading : '최소/최대 주문 수량을 확인해주세요.',
+                            text: [
+                                '최소 : ' + min,
+                                '최대 : ' + max,
+                            ],
                             showHideTransition: 'plain', //펴짐
                             position: 'top-right',
                             heading: 'Error',
@@ -1007,7 +1018,11 @@ $(document).ready(function(){
 
                 } else if (order < min || (max != 0 && order > max)) {
                     $.toast({
-                        text: '최대/최소 주문 수량을 확인하세요.',
+                        heading : '최소/최대 주문 수량을 확인해주세요.',
+                        text: [
+                            '최소 : ' + min,
+                            '최대 : ' + max,
+                        ],
                         showHideTransition: 'plain', //펴짐
                         position: 'top-right',
                         heading: 'Error',
@@ -1767,12 +1782,12 @@ $(document).ready(function(){
     });
     //배송비 구분 변경에따라
     $('select[name=product_delivery_payment_class]').change(function(){
-        var shipR='<tr class="shippingFee-detail-wrap shipping-t-detail"><th>배송비 상세 설정</th><td>배송비 <input type="text" id="product_delivery_payment" name="product_delivery_payment"> 원을 고정적으로 부과함.</td></tr>';
-        var shipM='<tr class="shippingFee-detail-wrap shipping-t-detail"><th>배송비 상세 설정</th><td><p class="cc2">구매 금액이 30,000원 미만일 때 배송비 2,500원을 부과하려면 30000|2500 입력</p><input type="text" id="product_delivery_payment" name="product_delivery_payment" placeholder="ex) 30000|2500"></td></tr>';
-        var shipD='<tr class="shippingFee-detail-wrap shipping-t-detail long"><th>배송비 상세 설정</th><td><p class="cc2">20,000원 이상~30,000원 미만일 때 배송비 2,000원을 부과하고 30,000원 이상~50,000원 미만일 때 배송비 1,000원을 부과하려면<br>20000|30000|2000//30000|50000|1000 입력</p><input type="text" id="product_delivery_payment" name="product_delivery_payment" placeholder="ex) 20000|30000|2000//30000|50000|1000"></td></tr>';
-        var shipW='<tr class="shippingFee-detail-wrap shipping-t-detail long"><th>배송비 상세 설정</th><td><p class="cc2">3kg 이상~5kg 미만일 때 배송비 2,000원을 부과하고 5kg 이상~7kg 미만일 때 배송비 5,000원을 부과하려면<br>3|5|2000//5|7|7000 입력</p><input type="text" id="product_delivery_payment" name="product_delivery_payment" placeholder="ex) 3|5|2000//5|7|7000"></td></tr>';
-        var shipC='<tr class="shippingFee-detail-wrap shipping-t-detail long"><th>배송비 상세 설정</th><td><p class="cc2">3개 이상~5개 미만일 때 배송비 2,000원을 부과하고 5개 이상~7개 미만일 때 배송비 5,000원을 부과하려면<br>3|5|2000//5|7|7000 입력</p><input type="text" id="product_delivery_payment" name="product_delivery_payment" placeholder="ex) 3|5|2000//5|7|7000"></td></tr>';
-        var shipN='<tr class="shippingFee-detail-wrap shipping-t-detail"><th>배송비 상세 설정</th><td>주문 금액에 상관 없이 수량에 따라 배송료 <input type="text" id="product_delivery_payment" name="product_delivery_payment">원을 부과함.</td></tr>';
+        var shipR='<tr class="shippingFee-detail-wrap shipping-t-detail"><th>배송비 상세 설정</th><td>배송비 <input class="onlyNumber" class="onlyNumber" type="text" id="product_delivery_payment" name="product_delivery_payment"> 원을 고정적으로 부과함.</td></tr>';
+        var shipM='<tr class="shippingFee-detail-wrap shipping-t-detail"><th>배송비 상세 설정</th><td><p class="cc2">구매 금액이 30,000원 미만일 때 배송비 2,500원을 부과하려면 30000|2500 입력</p><input class="onlyNumberAndPipe" type="text" id="product_delivery_payment" name="product_delivery_payment" placeholder="ex) 30000|2500"></td></tr>';
+        var shipD='<tr class="shippingFee-detail-wrap shipping-t-detail long"><th>배송비 상세 설정</th><td><p class="cc2">20,000원 이상~30,000원 미만일 때 배송비 2,000원을 부과하고 30,000원 이상~50,000원 미만일 때 배송비 1,000원을 부과하려면<br>20000|30000|2000//30000|50000|1000 입력</p><input class="onlyNumberAndPipe" type="text" id="product_delivery_payment" name="product_delivery_payment" placeholder="ex) 20000|30000|2000//30000|50000|1000"></td></tr>';
+        var shipW='<tr class="shippingFee-detail-wrap shipping-t-detail long"><th>배송비 상세 설정</th><td><p class="cc2">3kg 이상~5kg 미만일 때 배송비 2,000원을 부과하고 5kg 이상~7kg 미만일 때 배송비 5,000원을 부과하려면<br>3|5|2000//5|7|7000 입력</p><input class="onlyNumberAndPipe" type="text" id="product_delivery_payment" name="product_delivery_payment" placeholder="ex) 3|5|2000//5|7|7000"></td></tr>';
+        var shipC='<tr class="shippingFee-detail-wrap shipping-t-detail long"><th>배송비 상세 설정</th><td><p class="cc2">3개 이상~5개 미만일 때 배송비 2,000원을 부과하고 5개 이상~7개 미만일 때 배송비 5,000원을 부과하려면<br>3|5|2000//5|7|7000 입력</p><input class="onlyNumberAndPipe" type="text" id="product_delivery_payment" name="product_delivery_payment" placeholder="ex) 3|5|2000//5|7|7000"></td></tr>';
+        var shipN='<tr class="shippingFee-detail-wrap shipping-t-detail"><th>배송비 상세 설정</th><td>주문 금액에 상관 없이 수량에 따라 배송료 <input class="onlyNumber" type="text" id="product_delivery_payment" name="product_delivery_payment">원을 부과함.</td></tr>';
 
         if($(this).val() == "R"){
             $('.shippingFee-detail-wrap').remove();
@@ -1795,6 +1810,8 @@ $(document).ready(function(){
         }else if($(this).val() == "T"){
             $('.shippingFee-detail-wrap').remove();
         }
+        
+        validationNumber();
     });
     //유효기간
     // $('input[name=product_validity_yn]').on("change",function() {
@@ -2308,6 +2325,7 @@ $(document).ready(function(){
                         $('input:text[name^="'+index+'"]').val(item);
                         $('select[name='+index+']').val(item);
                         $('input:radio[name='+index+'][value=\'' + item + '\']').prop('checked',true);
+                        $('input:radio[name='+index+'][value=\'' + item + '\']').trigger("click");
                     });
                     $('input[name^="product_validity_end"]').val(data.list.product_validity_end);
                     $('input:radio[name=product_validity_yn][value=\'' + data.list.product_validity_yn + '\']').prop('checked',true);
@@ -2752,15 +2770,15 @@ $(document).ready(function(){
             }
 
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            $('input[name=refund_postcode]').val(data.zonecode);
-            $('input[name=refund_roadAddress]').val(roadAddr);
-            $('input[name=refund_jibunAddress]').val(data.jibunAddress);
+            $('input[name=postcode]').val(data.zonecode);
+            $('input[name=roadAddress]').val(roadAddr);
+            $('input[name=jibunAddress]').val(data.jibunAddress);
 
             // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
             if(roadAddr !== ''){
-                $('input[name=refund_extraAddress]').val(extraRoadAddr);
+                $('input[name=extraAddress]').val(extraRoadAddr);
             } else {
-                $('input[name=refund_extraAddress]').val('');
+                $('input[name=extraAddress]').val('');
             }
 //
 //            var guideTextBox =  $('input[name=refund_guide]');
@@ -3033,7 +3051,8 @@ function callTableTrStyle(type){
 
 }
 //저장 후 결과만
-function commonAjaxSaveCall(type,url,formData,popup=false){
+function commonAjaxSaveCall(type,url,formData,popup){
+	if(!popup) popup=false;
     var alertType;
     var showText;
     var hideAfterType;
@@ -3111,7 +3130,8 @@ $(document).on("click",'#toastLoginLink',function () {
     window.close();
 })
 //상품 문의 ajaxPaging 구현필요
-function callQnalist(product_cd,page=1) {
+function callQnalist(product_cd,page) {
+	if(!page) page = 1;
     var formData = {"product_cd":product_cd,"page":page};
     var dataList = commonAjaxListCall("POST","/product/listQna",formData);
     var html='';
@@ -3286,9 +3306,103 @@ $(".excelBtn").on("click",function(){
 	}
 	
 	var type = $(this).attr("data-id");
-	$('#defaultListForm').append(`
-		<button type='submit' formaction='/${type}/downloadExcelFile'>submit</button>
-	`);
+	$('#defaultListForm').append("<button type='submit' formaction='/"+type+"/downloadExcelFile'>submit</button>");
 	$('#defaultListForm button:last').click();
 	$('#defaultListForm button:last').remove();
 })
+
+//배너선택
+function selectBanner(banner_id){
+	$(".main-right").removeClass("hidden");
+	$(".file_link1").attr("src","");
+	$.ajax({
+		url: "/Manager/getBannerDetail",
+		method: 'post',
+		data: "banner_id="+banner_id,
+		success: function(res) {
+			console.log(res);
+			$.each(res.banner,function(index, item){
+				if(index == "banner_event_type"){
+					$("input[name="+index+"][value="+item+"}]").trigger("click");
+				}else if(index == "file_1"){
+					$(".file_link1").attr("src",item);
+				}else{
+					$("input[name="+index+"]").val(item);
+				}
+			});
+		},
+		error: function (xhr, status, error) {
+            console.log(error,xhr,status );
+        }
+	})
+}
+
+//배너 등록
+$(document).on("click","#formBannerSubmit",function () {
+    var formData = new FormData($('#defaultForm')[0]);
+    jQuery.ajax({
+        type: 'POST',
+        enctype: 'multipart/form-data',
+        data: formData,
+        processData: false, // 필수
+        contentType: false, // 필수
+        url:'/Manager/updateBanner',
+        success: function (data) {
+            if (data.validateError) {
+                $('.validateError').empty();
+                $.each(data.validateError, function (index, item) {
+                    if(index == "Error"){//일반에러메세지
+                        alertType = "error";
+                        showText = item;
+                    }else{
+                        alertType = "error";
+                        showText = index + " (은) " + item;
+                    }
+                    // $.toast().reset('all');//토스트 초기화
+                    $.toast({
+                        text: showText,
+                        showHideTransition: 'plain', //펴짐
+                        position: 'top-right',
+                        heading: 'Error',
+                        icon: 'error'
+                    });
+                });
+
+            } else if(data.success) {
+            	$.toast({
+                    text: 'success',
+                    showHideTransition: 'plain', //펴짐
+                    position: 'top-right',
+                    icon: 'success',
+                    hideAfter: 1000,
+                    afterHidden: function () {
+                        location.href = data.redirectUrl;
+                    }
+                });
+                // loginAuth(data.access_token);
+//                location.href=data.redirectUrl;
+            	location.reload();
+            }
+        },
+        error: function (xhr, status, error) {
+            alert("error");
+        }
+    });
+})
+
+function validationNumber(){
+	//숫자만입력받게
+	$(document).on("input",".onlyNumber",function(){
+	    $(this).val($(this).val().replace(/[^0-9]/g,""))
+	});
+	//숫자와|만입력받게
+	$(document).on("input",".onlyNumberAndPipe",function(){
+		$(this).val($(this).val().replace(/[^0-9|]/g,""))
+	});
+	//숫자와.만입력받게
+	$(document).on("input",".onlyNumberAndDot",function(){
+		$(this).val($(this).val().replace(/[^0-9.]/g,""))
+	});
+}
+
+validationNumber();

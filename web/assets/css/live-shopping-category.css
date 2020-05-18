@@ -60,7 +60,7 @@ body *{color:#e1e1e1}
 .sort-select * {color:#000;}
 
 /*list*/
-.list-wrap{float:left;padding-top:30px;border-bottom:1px solid rgba(255, 255, 255, 0.4)}
+.list-wrap{float:left;padding-top:30px;border-bottom:1px solid rgba(255, 255, 255, 0.4);width: 100%}
 .list-wrap:last-child{border:none;}
 .live-shopping-list{
     float:left;
@@ -84,7 +84,7 @@ body *{color:#e1e1e1}
     overflow: hidden;
 }
 .live-shopping-item a .imgbox:hover{opacity: 0.7; transition: 0.2s}
-.live-shopping-item a img{
+.live-shopping-item a img,.live-shopping-item a video{
     position:absolute;top:0;
     width:100%;
 }

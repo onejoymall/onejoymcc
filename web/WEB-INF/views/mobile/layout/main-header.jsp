@@ -44,10 +44,10 @@
     <header class="header live">
     <div class="top-inner">
     <h1 class="main-logo"><a href="/">원조이몰</a></h1>
-    <form name="search" action="" class="src-form">
+    <form name="search" action="/product" class="src-form">
     <div class="src-inner">
-    <input type="text" class="src-input" name="src-input">
-    <button type="button" class="src-btn"><span>검색</span></button>
+    <input type="text" class="src-input" name="product_name" value="${param.product_name}">
+    <button type="submit" class="src-btn"><span>검색</span></button>
     </div>
     </form>
     </div>

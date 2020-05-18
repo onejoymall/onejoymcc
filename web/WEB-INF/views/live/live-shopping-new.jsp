@@ -8,10 +8,11 @@
             <h3 class="main-slider-title hide">main slider</h3>
             <div class="main-slider-inner">
                 <ul class="main-slider-wrap">
-                    <li id="main-slide-1"><a href="#"></a></li>
-                    <li id="main-slide-2"><a href="#"></a></li>
-                    <li id="main-slide-3"><a href="#"></a></li>
-                    <li id="main-slide-4"><a href="#"></a></li>
+                    <c:if test="${not empty categoryBannerList}">
+			            <c:forEach var="categoryBannerList" items="${categoryBannerList}" varStatus="status">
+			                <li style="background:url(http://onejoy-life.com${categoryBannerList.file_link2}) no-repeat center / contain; cursor: pointer" onclick="location.href='<c:url value="/product?product_ct=${categoryBannerList.pd_category_id}"/>'"><a href="<c:url value="/product?product_ct=${categoryBannerList.pd_category_id}"/>">&nbsp;</a></li>
+			            </c:forEach>
+			        </c:if>
                 </ul>
             </div>
         </article>

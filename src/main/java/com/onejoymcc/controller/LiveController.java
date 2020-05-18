@@ -9,31 +9,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.onejoymcc.board.common.SearchVO;
-import com.onejoymcc.dao.CartDAO;
-import com.onejoymcc.dao.CategoryDAO;
-import com.onejoymcc.dao.ProductDAO;
-import com.onejoymcc.dao.UserDAO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
 import org.springframework.mobile.device.DeviceUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.*;
-
-import static org.springframework.util.CollectionUtils.isEmpty;
-
+import com.onejoymcc.board.common.SearchVO;
 import com.onejoymcc.common.dao.SelectorDAO;
+import com.onejoymcc.dao.CartDAO;
+import com.onejoymcc.dao.CategoryDAO;
 import com.onejoymcc.dao.ConfigDAO;
 import com.onejoymcc.dao.ProductDAO;
 import com.onejoymcc.dao.ReviewDAO;
+import com.onejoymcc.dao.UserDAO;
+import com.onejoymcc.vo.TodayVO;
 @Controller
 @RequestMapping("/")
 public class LiveController {
@@ -51,6 +48,58 @@ public class LiveController {
     SelectorDAO selectorDAO;
     @Autowired
     ReviewDAO reviewDAO;
+    
+    @RequestMapping(value = "/layout/mainTopNav")
+    public String mainTopNav(@RequestParam HashMap params, ModelMap model, HttpServletRequest request, SearchVO searchVO, HttpSession session, TodayVO todayVO) throws Exception{
+        try{
+            // 카테고리 출력
+            params.put("pd_category_upper_code","T");
+            params.put("pd_category_main_view","Y");
+            List<Map<String,Object>> categoryList = categoryDAO.getCategoryList(params);
+            params.put("pd_category_upper_code",null);
+            List<Map<String,Object>> subList = categoryDAO.getCategorySubList(params);
+            List<Map<String,Object>> thirdList = categoryDAO.getCategoryThirdList(params);
+            model.addAttribute("categoryList",categoryList);
+            model.addAttribute("subList",subList);
+            model.addAttribute("thirdList",thirdList);
+
+            params.put("email",session.getAttribute("email"));
+            Map<String,Object> userInfo = userDAO.getLoginUserList(params);
+
+            if(isEmpty(userInfo)){
+                params.put("cart_user_id",session.getAttribute("nonMembersUserId"));
+            }else{
+                params.put("cart_user_id",userInfo.get("usr_id"));
+            }
+
+            searchVO.setDisplayRowCount(5);
+            searchVO.setStaticRowEnd(5);
+            searchVO.pageCalculate(cartDAO.getTopCartListCount(params));
+
+            //오늘 본 상품 출력시 적용
+            if(isEmpty((List<String>)session.getAttribute("today"))){
+
+            }else{
+                todayVO.setProduct_cd_array((List<String>)session.getAttribute("today"));
+                List<Map<String,Object>> todayList = productDAO.getProductTodayList(todayVO);
+                model.addAttribute("todayList", todayList);
+            }
+
+//            todayVO.setProduct_cd_array(new String[]{"string1"});
+
+
+            model.addAttribute("searchVO", searchVO);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Device device = DeviceUtils.getCurrentDevice(request);
+        if(device.isMobile()){
+            return "mobile/layout/footer-left-Nav";
+        } else {
+            return "layout/mainTopNav";
+        }
+    }
     @RequestMapping(value = "/")
     public String liveMain(@RequestParam HashMap params, ModelMap model, SearchVO searchVO, HttpServletRequest request) throws Exception {
         try{
@@ -67,7 +116,9 @@ public class LiveController {
 
             params.put("rowStart",searchVO.getRowStart());
             params.put("staticRowEnd",searchVO.getStaticRowEnd());
-            searchVO.setPd_category_id(searchVO.getProduct_ct());
+            if(searchVO.getProduct_ct() != null && !searchVO.getProduct_ct().equals("")) {
+            	searchVO.setPd_category_id(Integer.parseInt(searchVO.getProduct_ct()));
+            }
             searchVO.setProduct_sale_yn("Y");
             List<Map<String,Object>> productList = productDAO.getProductList(searchVO);
             model.addAttribute("productList", productList);
@@ -79,6 +130,16 @@ public class LiveController {
             List<Map<String,Object>> productSpList = productDAO.getProductList(searchVO);
             model.addAttribute("productSpList", productSpList);
             model.addAttribute("searchVO", searchVO);
+            
+          //매인 배너
+            params.put("pd_category_event_use_yn","");
+            params.put("banner_use_yn","Y");
+            //몇번째부터 몇개
+            params.put("limitTo",0);
+            params.put("limitBe",3);
+            params.put("pd_category_event_end","");
+            List<Map<String,Object>> categoryBannerList = categoryDAO.getCategoryEventList(params);
+            model.addAttribute("categoryBannerList",categoryBannerList);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -137,8 +198,11 @@ public class LiveController {
             Map<String,Object> configtop = configDAO.getConfigDetail(params);
             params.put("market_config_code", "market-config-partner-bot");
             Map<String,Object> configbot = configDAO.getConfigDetail(params);
+            params.put("market_config_code", "market-config-partner-live");
+            Map<String,Object> configlive = configDAO.getConfigDetail(params);
             model.addAttribute("configtop",configtop);
             model.addAttribute("configbot",configbot);
+            model.addAttribute("configlive",configlive);
 
             //리뷰
             searchVO.setDisplayRowCount(1000);
@@ -171,8 +235,84 @@ public class LiveController {
             return "live/product-page";
         }
     }
+  //modal
+    @RequestMapping(value = "/mobile/layout/m_modal", method = RequestMethod.GET, produces = "application/json")
+    public String m_Modal(@RequestParam HashMap params, ModelMap model) throws Exception {
 
-    //배송비
+        try{
+
+            params.put("market_config_code","info-main");
+            Map<String,Object> infoMain = configDAO.getConfigDetail(params);
+            model.addAttribute("infoMain", infoMain);
+            params.put("market_config_code","info-privacy");
+            Map<String,Object> infoPrivacy = configDAO.getConfigDetail(params);
+            model.addAttribute("infoPrivacy", infoPrivacy);
+            params.put("market_config_code","info-join");
+            Map<String,Object> infoJoin = configDAO.getConfigDetail(params);
+            model.addAttribute("infoJoin", infoJoin);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return "mobile/layout/m_modal";
+    }
+    
+  //상품 목록
+    @RequestMapping(value="/product")
+    public String productList(Model model, HttpSession session, HashMap params, SearchVO searchVO,HttpServletRequest request) throws Exception {
+    	Device device = DeviceUtils.getCurrentDevice(request);
+        try{
+            //사용자 아이디 확인 후 전달
+//            params.put("email",session.getAttribute("email"));
+//            Map<String,Object> userInfo = userDAO.getLoginUserList(params);
+//            params.put("point_paid_user_id",userInfo.get("usr_id"));
+            if(searchVO.getDisplayRowCount()==null || searchVO.getDisplayRowCount() < 12){
+                searchVO.setDisplayRowCount(12);
+            }
+            if(device.isMobile()){
+            	searchVO.setDisplayRowCount(1000);
+            }
+            // 기본정렬
+            if(searchVO.getOrderByValue()==null || searchVO.getOrderByKey()==null){
+                searchVO.setOrderByKey("product_id");
+                searchVO.setOrderByValue("DESC");
+            }
+            //회원전용상품 노출
+            Object obj = session.getAttribute("login");
+            if(obj!=null){
+                if((Boolean)obj){
+                    searchVO.setProduct_use_member_yn(null);
+                }
+            }else{
+                searchVO.setProduct_use_member_yn("N");
+            }
+            searchVO.setProduct_sale_yn("Y");
+            searchVO.setProduct_use_yn("Y");
+            searchVO.pageCalculate(productDAO.getProductListCount(searchVO));
+
+            params.put("rowStart",searchVO.getRowStart());
+            params.put("staticRowEnd",searchVO.getStaticRowEnd());
+            if(searchVO.getProduct_ct() != null && !searchVO.getProduct_ct().equals("")) {
+            	searchVO.setPd_category_id(Integer.parseInt(searchVO.getProduct_ct()));
+            }
+            List<Map<String,Object>> list = productDAO.getProductList(searchVO);
+            Map<String,Object> categoryRowData = categoryDAO.getCategoryDetail(searchVO);
+            model.addAttribute("list", list);
+            model.addAttribute("categoryRowData",categoryRowData);
+            model.addAttribute("searchVO", searchVO);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        model.addAttribute("style", "live-shopping-category");
+        
+        if(device.isMobile()){
+            return "mobile/live-product-list";
+        } else {
+            return "live/live-product-list";
+        }
+    }
+    
+  //배송비
     public Integer deliveryPayment( Map<String,Object> params)throws IOException {
         Integer deliveryPayment=0;
         try{
@@ -382,81 +522,5 @@ public class LiveController {
             e.printStackTrace();
         }
         return outText;
-    }
-
-    @RequestMapping(value = "/mobile/layout/main-header")
-    public String MmainTopNav(@RequestParam HashMap params, ModelMap model, HttpServletRequest request, SearchVO searchVO, HttpSession session) throws Exception{
-        try{
-            // 카테고리 출력
-            params.put("pd_category_upper_code","T");
-            params.put("pd_category_main_view","Y");
-            List<Map<String,Object>> categoryList = categoryDAO.getCategoryList(params);
-            params.put("pd_category_upper_code",null);
-            List<Map<String,Object>> subList = categoryDAO.getCategorySubList(params);
-            List<Map<String,Object>> thirdList = categoryDAO.getCategoryThirdList(params);
-            model.addAttribute("categoryList",categoryList);
-            model.addAttribute("subList",subList);
-            model.addAttribute("thirdList",thirdList);
-
-            params.put("email",session.getAttribute("email"));
-            Map<String,Object> userInfo = userDAO.getLoginUserList(params);
-
-            if(isEmpty(userInfo)){
-                params.put("cart_user_id",session.getAttribute("nonMembersUserId"));
-            }else{
-                params.put("cart_user_id",userInfo.get("usr_id"));
-            }
-
-            searchVO.setDisplayRowCount(5);
-            searchVO.setStaticRowEnd(5);
-            searchVO.pageCalculate(cartDAO.getTopCartListCount(params));
-
-
-            model.addAttribute("searchVO", searchVO);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return "mobile/layout/main-header";
-
-    }
-
-    @RequestMapping(value = "/mobile/layout/sub-header")
-    public String MsubTopNav(@RequestParam HashMap params, ModelMap model, HttpServletRequest request, SearchVO searchVO, HttpSession session) throws Exception{
-        try{
-            // 카테고리 출력
-            params.put("pd_category_upper_code","T");
-            params.put("pd_category_main_view","Y");
-            List<Map<String,Object>> categoryList = categoryDAO.getCategoryList(params);
-            params.put("pd_category_upper_code",null);
-            List<Map<String,Object>> subList = categoryDAO.getCategorySubList(params);
-            List<Map<String,Object>> thirdList = categoryDAO.getCategoryThirdList(params);
-            model.addAttribute("categoryList",categoryList);
-            model.addAttribute("subList",subList);
-            model.addAttribute("thirdList",thirdList);
-
-            params.put("email",session.getAttribute("email"));
-            Map<String,Object> userInfo = userDAO.getLoginUserList(params);
-
-            if(isEmpty(userInfo)){
-                params.put("cart_user_id",session.getAttribute("nonMembersUserId"));
-            }else{
-                params.put("cart_user_id",userInfo.get("usr_id"));
-            }
-
-            searchVO.setDisplayRowCount(5);
-            searchVO.setStaticRowEnd(5);
-            searchVO.pageCalculate(cartDAO.getTopCartListCount(params));
-
-//            todayVO.setProduct_cd_array(new String[]{"string1"});
-
-
-            model.addAttribute("searchVO", searchVO);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return "mobile/layout/sub-header";
-
     }
 }

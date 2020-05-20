@@ -61,21 +61,7 @@
             </div>
             </form>
             <div class="creators-p">
-                <div class="profile-head">
-                    <a href="">
-                        <img src="../assets/img/Alexa.png" alt="">
-                        <span>Alexa Ilacad</span>
-                    </a>
-                </div>
-                <div class="short-description">
-                    <p>
-                        Hi guys! It’s me, Alexa! Thank you for coming back to my channel again!🙋🏻‍♀️<br>
-                        This is such a holy grail! your lips will be much sexier with these 2 velvet lip tint colors!😍<br>
-                        More information is in the video! so never skip it!😊🤪
-                    </p>
-                    <p>&nbsp;</p>
-                    <p>*More shades will be added in a few weeks*</p>
-                </div>
+                ${configlive.market_config_value}
                 <div class="container-box">
                     <div class="tab-box">
                         <ul>

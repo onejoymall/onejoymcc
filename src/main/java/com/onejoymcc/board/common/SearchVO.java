@@ -1,18 +1,14 @@
 package com.onejoymcc.board.common;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 public class SearchVO extends PageVO{
-
+    private Integer usr_id;
     private String bgno;                       // 게시판 그룹
     private String searchKeyword = "";         // 검색 키워드
     private String searchType = "";            // 검색 필드: 제목, 내용  
     private String[] searchTypeArr;            // 검색 필드를 배열로 변환
     private String product_sale_yn;
     private String product_use_yn;
-    private String product_live_type;
-    private String product_youtube_id;
-    private Integer product_ct;
+    private String product_ct;
     private Integer pd_category_id;
     private String mainViewType;
     private String orderByKey;
@@ -22,21 +18,32 @@ public class SearchVO extends PageVO{
     private String start_date;
     private String end_date;
     private String product_name;
+    private String product_use_member_yn;
+    private String sales_criteria;
+    private String question_type;
 
-    public String getProduct_live_type() {
-        return product_live_type;
+    public String getQuestion_type() {
+        return question_type;
     }
 
-    public void setProduct_live_type(String product_live_type) {
-        this.product_live_type = product_live_type;
+    public void setQuestion_type(String question_type) {
+        this.question_type = question_type;
     }
 
-    public String getProduct_youtube_id() {
-        return product_youtube_id;
+    public String getProduct_use_member_yn() {
+        return product_use_member_yn;
     }
 
-    public void setProduct_youtube_id(String product_youtube_id) {
-        this.product_youtube_id = product_youtube_id;
+    public void setProduct_use_member_yn(String product_use_member_yn) {
+        this.product_use_member_yn = product_use_member_yn;
+    }
+
+    public Integer getUsr_id() {
+        return usr_id;
+    }
+
+    public void setUsr_id(Integer usr_id) {
+        this.usr_id = usr_id;
     }
 
     public String getProduct_use_yn() {
@@ -119,11 +126,11 @@ public class SearchVO extends PageVO{
         this.pd_category_id = pd_category_id;
     }
 
-    public Integer getProduct_ct() {
+    public String getProduct_ct() {
         return product_ct;
     }
 
-    public void setProduct_ct(Integer product_ct) {
+    public void setProduct_ct(String product_ct) {
         this.product_ct = product_ct;
     }
 
@@ -166,6 +173,14 @@ public class SearchVO extends PageVO{
     public String[] getSearchTypeArr() {
         return searchType.split(",");
     }
+
+	public String getSales_criteria() {
+		return sales_criteria;
+	}
+
+	public void setSales_criteria(String sales_criteria) {
+		this.sales_criteria = sales_criteria;
+	}
 
 }
  

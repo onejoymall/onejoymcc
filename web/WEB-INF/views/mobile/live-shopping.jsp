@@ -2,13 +2,15 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<c:import url="/mobile/layout/main-header"/>
+<%@ include file="/WEB-INF/views/mobile/layout/main-header.jsp" %>
 
     <div class="main-sliderLS mt-1">
         <ul class="main-slider-wrap">
-            <li><a href="#"><img src="../../assets/img/m-main-slider-img1.png" alt="메인이벤트1"></a></li>
-            <li><a href="#"><img src="../../assets/img/m-main-slider-img2.png" alt="메인이벤트2"></a></li>
-            <li><a href="#"><img src="../../assets/img/m-main-slider-img3.png" alt="메인이벤트3"></a></li>
+            <c:if test="${not empty categoryBannerList}">
+	            <c:forEach var="categoryBannerList" items="${categoryBannerList}" varStatus="status">
+	                <li style="background:url(http://onejoy-life.com${categoryBannerList.file_link2}) no-repeat center / contain; cursor: pointer" onclick="location.href='<c:url value="/product?product_ct=${categoryBannerList.pd_category_id}"/>'"><a href="<c:url value="/product?product_ct=${categoryBannerList.pd_category_id}"/>">&nbsp;</a></li>
+	            </c:forEach>
+	        </c:if>
         </ul>
     </div>
     <article class="live-shopping-wrap">
@@ -37,7 +39,7 @@
                             <a href="/view?product_cd=${list.product_cd}"><p class="live-shopping-title">${list.product_name}</p></a>
                             <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</ins><del>
                            	<span class="price-before"><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</span></del></p>
-                            <p class="live-shopping-user"><a href="#">${list.product_user_ud}</a></p>
+                            <p class="live-shopping-user"><a href="/view?product_cd=${list.product_cd}">${list.product_user_ud}</a></p>
                             <p class="live-shopping-score">
                                 <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
                                 <span class="score-text">5,324개 평가</span>
@@ -73,7 +75,7 @@
                             <a href="/view?product_cd=${list.product_cd}"><p class="live-shopping-title">${list.product_name}</p></a>
                             <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</ins><del>
                            	<span class="price-before"><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</span></del></p>
-                            <p class="live-shopping-user"><a href="#">${list.product_user_ud}</a></p>
+                            <p class="live-shopping-user"><a href="/view?product_cd=${list.product_cd}">${list.product_user_ud}</a></p>
                             <p class="live-shopping-score">
                                 <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
                                 <span class="score-text">5,324개 평가</span>
@@ -97,10 +99,10 @@
                                 	<img src='http://img.youtube.com/vi/${list.product_youtube_id}/0.jpg' onerror="this.src='http://placehold.it/340x190'" height="190">
                                	</c:if>
                                	<c:if test="${list.product_live_type == 'M'}">
-                                        	<video style="width:100%">
-												<source src="http://onejoy-life.com${list.file_6}" type="video/mp4">
-											</video>
-                                       	</c:if>
+	                                <video style="width:100%">
+										<source src="http://onejoy-life.com${list.file_6}" type="video/mp4">
+									</video>
+                              	</c:if>
                                 <!-- <span class="video-time">8:12</span> -->
                                 <!-- <div class="sold-out"><p>SOLD OUT</p></div> -->
                             </div>
@@ -109,7 +111,7 @@
                             <a href="/view?product_cd=${list.product_cd}"><p class="live-shopping-title">${list.product_name}</p></a>
                             <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</ins><del>
                            	<span class="price-before"><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</span></del></p>
-                            <p class="live-shopping-user"><a href="#">${list.product_user_ud}</a></p>
+                            <p class="live-shopping-user"><a href="/view?product_cd=${list.product_cd}">${list.product_user_ud}</a></p>
                             <p class="live-shopping-score">
                                 <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
                                 <span class="score-text">5,324개 평가</span>
@@ -123,19 +125,6 @@
             </div>
         </div>
     </article>
-    <div>
-        <ul class="flexaround border-n">
-            <li>
-                <a href="#"><i class="icon join i-big"></i>회원가입</a>
-            </li>
-            <li>
-                <a href="#"><i class="icon epoint i-big"></i>E-POINT 안내</a>
-            </li>
-            <li>
-                <a href="#"><i class="icon faq i-big"></i>자주하는 질문</a>
-            </li>
-        </ul>
-    </div>
 
 <%@ include file="/WEB-INF/views/mobile/layout/footer.jsp" %>
 <script type="text/javascript">

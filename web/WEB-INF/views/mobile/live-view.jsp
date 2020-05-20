@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<c:import url="/mobile/layout/sub-header"/>
+<%@ include file="/WEB-INF/views/mobile/layout/sub-header.jsp" %>
 
 <div class="underPurchase">
     <div class="content">
@@ -150,11 +150,7 @@
        </ul>
        <div class="my-1">
             <hr class="grey">
-            <h2 class="mb-05 mt-1"> Alexa Ilacad</h2>
-            <p class="text-md">Hi guys! It’s me, Alexa! Thank you for coming back to my channel again!🙋🏻‍♀️ <br>
-This is such a holy grail! your lips will be much sexier with these 2 velvet lip tint colors!😍 <br>
-More information is in the video! so never skip it!😊🤪 <br><br>
-*More shades will be added in a few weeks*</p>
+            ${configlive.market_config_value}
         </div>
     </section>
     <section class="subheader">
@@ -379,4 +375,4 @@ function move(num){
     $('html').animate({scrollTop : offset.top - 100}, 400);
 }
 </script>
-<%@ include file="/WEB-INF/views/mobile/layout/footer.jsp" %>
+<%@ include file="/WEB-INF/views/mobile/layout/none-nav-footer.jsp" %>

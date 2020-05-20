@@ -17,11 +17,12 @@
             AND pd_category_upper_code=#{pd_category_upper_code}
         </if>
         <if test="pd_category_main_view!=null and pd_category_main_view!=''">
-            AND pd_category_main_view=#{pd_category_main_view}
+            AND (pd_category_main_view=#{pd_category_main_view} or pd_category_name = '라이브쇼핑')
         </if>
         <if test="pd_category_main_view_sp!=null and pd_category_main_view_sp!=''">
             AND pd_category_main_view_sp=#{pd_category_main_view_sp}
         </if>
+        order by pd_category_name = '라이브쇼핑' DESC
         <if test="limit!=null and limit!=''">
             limit #{limit}
         </if>

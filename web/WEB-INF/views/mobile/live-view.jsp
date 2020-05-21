@@ -164,7 +164,7 @@
            <li><a href="javascript:move(2)">리뷰 <span class="red text-sm">65</span></a></li>
        </ul>        
         <div class="my-1" id="content01">
-           상품상세 영역입니다.
+            ${list.product_mobile_html}
         </div>
     </section>
     <section class="wrap">

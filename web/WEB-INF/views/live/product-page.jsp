@@ -70,10 +70,9 @@
                         </ul>
                     </div>
                     <div class="content1" id="sec1">
-                    	상품상세영역입니다.
-                        <%-- <div class="description-img" >
+                        <div class="description-img" >
                             ${list.product_html}
-                        </div> --%>
+                        </div>
                     </div>
                     <div class="content2" id="sec2">
                         <div class="content-reviews">

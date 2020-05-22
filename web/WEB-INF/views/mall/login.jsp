@@ -33,7 +33,7 @@
                     <input type="checkbox" id="saveid" checked="checked" class="id-ch ">
                     아이디 저장하기
                 </label>
-                <a href="<c:url value="/sign/findUserInfo"/>" class="id-pw">아이디/비밀번호 찾기</a>
+                <a href="<c:url value="http://onejoy-life.com/sign/findUserInfo"/>" class="id-pw">아이디/비밀번호 찾기</a>
             </div>
             <%--<div class="sns-login-wrap">
                 <div class="sns-login-inner">

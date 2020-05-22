@@ -43,7 +43,7 @@ public class UserController {
     @RequestMapping(value = "/sign/login", method = RequestMethod.GET, produces = "application/json")
     public String mallLogin(@RequestParam HashMap params, ModelMap model, HttpServletRequest request, HttpSession session) throws Exception {
         String returnString ="mall/login";
-//        Device device = DeviceUtils.getCurrentDevice(request);
+        Device device = DeviceUtils.getCurrentDevice(request);
 
         try{
             session.setAttribute("RefererUrl",request.getHeader("Referer"));
@@ -60,11 +60,12 @@ public class UserController {
         }catch(Exception e){
             e.printStackTrace();
         }
-/*        if(device.isMobile()){
-            returnString = "mobile/login";
-        }*/
         model.addAttribute("style", "login");
-        return returnString;
+        if(device.isMobile()){
+            returnString = "mobile/live-login";
+        }
+            return returnString;
+
     }
 
     // 로그아웃 하는 부분

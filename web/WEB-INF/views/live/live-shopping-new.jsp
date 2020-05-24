@@ -42,7 +42,7 @@
                                     <a href="/view?product_cd=${list.product_cd}"><p class="live-shopping-title">${list.product_name}</p></a>
                                     <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</ins><del>
                                    	<span class="price-before"><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</span></del></p>
-                                    <p class="live-shopping-user"><a href="#">${list.product_user_ud}</a></p>
+                                    <p class="live-shopping-user"><a href="#">${list.product_store_id}</a></p>
                                     <p class="live-shopping-score">
                                         <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
                                         <span class="score-text">5,324개 평가</span>
@@ -78,7 +78,7 @@
                                     <a href="/view?product_cd=${list.product_cd}"><p class="live-shopping-title">${list.product_name}</p></a>
                                     <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</ins><del>
                                    	<span class="price-before"><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</span></del></p>
-                                    <p class="live-shopping-user"><a href="#">${list.product_user_ud}</a></p>
+                                    <p class="live-shopping-user"><a href="#">${list.product_store_id}</a></p>
                                     <p class="live-shopping-score">
                                         <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
                                         <span class="score-text">5,324개 평가</span>
@@ -176,7 +176,7 @@
                                     <a href="/view?product_cd=${list.product_cd}"><p class="live-shopping-title">${list.product_name}</p></a>
                                     <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</ins><del>
                                    	<span class="price-before"><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</span></del></p>
-                                    <p class="live-shopping-user"><a href="#">${list.product_user_ud}</a></p>
+                                    <p class="live-shopping-user"><a href="#">${list.product_store_id}</a></p>
                                     <p class="live-shopping-score">
                                         <span class="vid-view">조회수 <span class="vid-view-number">45,231</span></span>
                                         <span class="score-text">5,324개 평가</span>

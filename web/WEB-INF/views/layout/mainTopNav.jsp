@@ -14,7 +14,7 @@
         <div class="gnb-inner">
             <ul class="gnb">
                 <li>
-                    <i class="main-menu-ic"></i>전체 카테고리
+                    <i class="main-menu-ic"></i>
                     <ul class="gnb-submenu">
                     <c:if test="${not empty categoryList}">
                     <c:forEach var="ctegoryList" items="${categoryList}" varStatus="status">

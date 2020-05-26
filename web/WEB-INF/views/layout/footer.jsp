@@ -91,7 +91,7 @@
         });
         $(window).scroll(function() {
             if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-              console.log(++page);
+              // console.log(++page);
               $(".live-shopping-list").append('');
             }
         });

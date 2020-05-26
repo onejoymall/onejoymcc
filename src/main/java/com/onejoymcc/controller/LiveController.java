@@ -55,7 +55,9 @@ public class LiveController {
             // 카테고리 출력
             params.put("pd_category_upper_code","T");
             params.put("pd_category_main_view","Y");
+            params.put("pd_category_id",888);
             List<Map<String,Object>> categoryList = categoryDAO.getCategoryList(params);
+            params.put("pd_category_id",null);
             params.put("pd_category_upper_code",null);
             List<Map<String,Object>> subList = categoryDAO.getCategorySubList(params);
             List<Map<String,Object>> thirdList = categoryDAO.getCategoryThirdList(params);

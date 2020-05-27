@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.onejoymcc.board.common.SearchVO;
 import com.onejoymcc.common.dao.SelectorDAO;
+import com.onejoymcc.dao.BannerDAO;
 import com.onejoymcc.dao.CartDAO;
 import com.onejoymcc.dao.CategoryDAO;
 import com.onejoymcc.dao.ConfigDAO;
@@ -36,6 +37,8 @@ import com.onejoymcc.vo.TodayVO;
 public class LiveController {
     @Autowired
     ProductDAO productDAO;
+    @Autowired
+    BannerDAO bannerDAO;
     @Autowired
     CategoryDAO categoryDAO;
     @Autowired
@@ -159,6 +162,13 @@ public class LiveController {
         	Map<String,Object> list = productDAO.getProductViewDetail(params);
 
             model.addAttribute("list",list);
+            
+            //관련상품 (카테고리기준)
+            list.put("rowStart",1);
+            list.put("displayRowCount",5);
+            list.put("product_cts",((String)list.get("product_ct")).split("\\|"));
+            List<Map<String,Object>> relatedProductList = productDAO.relatedProductList(list);
+            model.addAttribute("relatedProductList", relatedProductList);
 
             searchVO.setDisplayRowCount(1);
             searchVO.pageCalculate(cartDAO.getFavoritesListCount(params));
@@ -190,8 +200,7 @@ public class LiveController {
             params.put("product_option_input",list.get("product_option_input"));
             String option = getOption(params);
             model.addAttribute("option",option);
-            //리뷰
-//            model.addAllAttributes("reviews",reviewDAO.get)
+
             //서비스안내
             params.put("store_id",list.get("store_id"));
             params.put("market_config_code", "market-config-partner-top");
@@ -203,6 +212,20 @@ public class LiveController {
             model.addAttribute("configtop",configtop);
             model.addAttribute("configbot",configbot);
             model.addAttribute("configlive",configlive);
+            
+          //띠배너
+            params.put("banner_type","product_line");
+            List<Map<String,Object>> lineBannerList = bannerDAO.getBannerList(params);
+            for(Map<String,Object> banner:lineBannerList) {
+            	if("H".equals(banner.get("banner_event_type"))) {
+            		banner.put("url",banner.get("banner_href"));
+            	}else if("P".equals(banner.get("banner_event_type"))) {
+            		banner.put("url","http://onejoy-life.com/product/productDetail?product_cd="+banner.get("banner_product_cd"));
+            	}else if("C".equals(banner.get("banner_event_type"))) {
+            		banner.put("url","http://onejoy-life.com/product?product_ct="+banner.get("banner_product_ct"));
+            	}
+            }
+            model.addAttribute("lineBannerList1", lineBannerList.get(0));
 
             //리뷰
             searchVO.setDisplayRowCount(1000);
@@ -212,7 +235,6 @@ public class LiveController {
             params.put("rowStart",searchVO.getRowStart());
             params.put("staticRowEnd",searchVO.getStaticRowEnd());
             params.put("displayRowCount", searchVO.getDisplayRowCount());
-
             List<Map<String,Object>> reviewList = reviewDAO.getReviewForProductList(params);
 
             int[] scoreArr = new int[reviewList.size()];

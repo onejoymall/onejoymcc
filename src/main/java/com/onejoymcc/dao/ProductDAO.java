@@ -32,5 +32,17 @@ public class ProductDAO {
         List<Map<String, Object>> getProductTodayList = sql.selectList("mall.ProductMapper.getProductTodayList",todayVO);
         return getProductTodayList;
     }
+	public List<Map<String, Object>> sameSupplierProductList(Map<String, Object> params) {
+		List<Map<String, Object>> sameSupplierProductList = sql.selectList("mall.ProductMapper.sameSupplierProductList", params);
+		return sameSupplierProductList;
+	}
+	public List<Map<String, Object>> relatedProductList(Map<String, Object> params) {
+		List<Map<String, Object>> relatedProductList = sql.selectList("mall.ProductMapper.relatedProductList", params);
+		return relatedProductList;
+	}
+	public List<Map<String, Object>> serialProductList(Map<String, Object> params) {
+		List<Map<String, Object>> serialProductList = sql.selectList("mall.ProductMapper.serialProductList", params);
+		return serialProductList;
+	}
 
 }

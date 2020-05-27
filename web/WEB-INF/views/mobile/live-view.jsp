@@ -128,7 +128,7 @@
            </li>
            <li>
                <i class="ri-star-line"></i>
-               <h4>5.0</h4>
+               <h4>${scoreAvg}</h4>
            </li>
            <li>
                <i class="ri-eye-line"></i>
@@ -158,7 +158,7 @@
             <li><a href="javascript:wish()" class="wish">위시리스트</a></li>
             <li><a href="#" class="share">공유하기</a></li>
         </ul>
-        <img src="../../assets/img/goods-view/bnr1.jpg" alt="" class="width-100">
+        <a href="${lineBannerList1.url}"><img src="http://onejoy-life.com/${lineBannerList1.file_1}" alt="" class="width-100"></a>
         <ul class="taps" id="tap">
            <li><a href="javascript:move(1)" class="active">상품설명</a></li>
            <li><a href="javascript:move(2)">리뷰 <span class="red text-sm">65</span></a></li>
@@ -169,17 +169,27 @@
     </section>
     <section class="wrap">
         <div class="mt-4 mb-2" id="content02">
-            <h3 class="mb-1"><span class="red text-lg">65</span>개의 리뷰가 있습니다.</h3>
+            <h3 class="mb-1"><span class="red text-lg">${fn:length(reviewList)}</span>개의 리뷰가 있습니다.</h3>
             <hr>
+            <c:set var="scoreMap" value="<%=new java.util.HashMap()%>" />
+            <c:set target="${scoreMap}" property="scoreCount1" value="0"/>
+            <c:set target="${scoreMap}" property="scoreCount2" value="0"/>
+            <c:set target="${scoreMap}" property="scoreCount3" value="0"/>
+            <c:set target="${scoreMap}" property="scoreCount4" value="0"/>
+            <c:set target="${scoreMap}" property="scoreCount5" value="0"/>
+            <c:forEach var="list" items="${reviewList}">
+            	<c:set var="tmp" value="scoreMap.scoreCount${status.index}" />
+            	<c:set target="${scoreMap}" property="scoreCount${list.review_score}" value="${requestScope[tmp] + 1}"/>
+            </c:forEach>
             <div class="py-2">
-                <h2 class="text-bold pb-2">5.0</h2>
+                <h2 class="text-bold pb-2">${scoreAvg}</h2>
                 <ul class="flexbetween py-05">
                    <li class="text-md">
                        <i class="ri-star-fill"></i><i class="ri-star-fill mx-02"></i><i class="ri-star-fill"></i><i class="ri-star-fill mx-02"></i><i class="ri-star-fill"></i>
                    </li>
                    <li class="width-70">
                        <div class="stick-group">
-                           <div class="stick w-100"></div> 
+                           <div class="stick" style="width: <c:if test="${fn:length(reviewList) == 0}">0</c:if><c:if test="${fn:length(reviewList) != 0}">${scoreMap.scoreCount5 / fn:length(reviewList) * 100}</c:if>%"></div> 
                        </div>
                    </li>
                </ul>
@@ -189,7 +199,7 @@
                    </li>
                    <li class="width-70">
                        <div class="stick-group">
-                           <div class="stick w-100"></div> 
+                           <div class="stick" style="width: <c:if test="${fn:length(reviewList) == 0}">0</c:if><c:if test="${fn:length(reviewList) != 0}">${scoreMap.scoreCount4 / fn:length(reviewList) * 100}</c:if>%"></div> 
                        </div>
                    </li>
                </ul>
@@ -199,7 +209,7 @@
                    </li>
                    <li class="width-70">
                        <div class="stick-group">
-                           <div class="stick w-100"></div> 
+                           <div class="stick" style="width: <c:if test="${fn:length(reviewList) == 0}">0</c:if><c:if test="${fn:length(reviewList) != 0}">${scoreMap.scoreCount3 / fn:length(reviewList) * 100}</c:if>%"></div>
                        </div>
                    </li>
                </ul>
@@ -209,7 +219,7 @@
                    </li>
                    <li class="width-70">
                        <div class="stick-group">
-                           <div class="stick w-100"></div> 
+                           <div class="stick" style="width: <c:if test="${fn:length(reviewList) == 0}">0</c:if><c:if test="${fn:length(reviewList) != 0}">${scoreMap.scoreCount2 / fn:length(reviewList) * 100}</c:if>%"></div>
                        </div>
                    </li>
                </ul>
@@ -219,64 +229,51 @@
                    </li>
                    <li class="width-70">
                        <div class="stick-group">
-                           <div class="stick w-70"></div> 
+                           <div class="stick" style="width: <c:if test="${fn:length(reviewList) == 0}">0</c:if><c:if test="${fn:length(reviewList) != 0}">${scoreMap.scoreCount1 / fn:length(reviewList) * 100}</c:if>%"></div>
                        </div>
                    </li>
                </ul>
             </div>
+            <c:if test="${not empty reviewList}">
+			<c:forEach var="list" items="${reviewList}">
             <ul class="product bg_grey">
                <div class="productImg">
-                   <img src="../../assets/img/sub-slider-img3.png" alt="">
+                    <c:if test="${not empty list.file_1}">
+               			<img src="http://onejoy-life.com/${list.file_1}" alt="">
+               		</c:if>
                </div>
                <div class="p-2">
-                   <h4>Roxanne</h4>
+                   <h4>${list.email}</h4>
                    <div class="my-1">
-                       <i class="ri-star-fill red"></i><i class="ri-star-fill red mx-02"></i><i class="ri-star-fill red"></i><i class="ri-star-fill red mx-02"></i><i class="ri-star-fill red opacity-5"></i>
+                   	   <c:forEach var="i" begin="1" end="${list.review_score}">
+                       <i class="ri-star-fill red"></i>
+                       </c:forEach>
                    </div>
-                   <p class="text-md mb-2">카메라 잘받았습니다. 보증서도 이상없이 있고, 무엇보다 질문답게시판에 3번정도의 질문을했는데 판매자님께서 친절히 답해주셔서 감사하구요, 아직 꼼꼼히 보진못했지만 이상 없는 듯 합니다. 모두 안심하고 구매하셔도 될 듯 합니다^^ 감사합니다</p>
+                   <b>${list.review_title}</b>
+                   <p class="text-md mb-2">${list.review_content}</p>
                </div>
             </ul>
-            <ul class="product bg_grey">
-               <div class="p-2">
-                   <h4>Roxanne</h4>
-                   <div class="my-1">
-                       <i class="ri-star-fill red"></i><i class="ri-star-fill red mx-02"></i><i class="ri-star-fill red"></i><i class="ri-star-fill red mx-02"></i><i class="ri-star-fill red opacity-5"></i>
-                   </div>
-                   <p class="text-md mb-2">카메라 잘받았습니다. 보증서도 이상없이 있고, 무엇보다 질문답게시판에 3번정도의 질문을했는데 판매자님께서 친절히 답해주셔서 감사하구요, 아직 꼼꼼히 보진못했지만 이상 없는 듯 합니다. 모두 안심하고 구매하셔도 될 듯 합니다^^ 감사합니다</p>
-               </div>
-            </ul>
+            </c:forEach>
+            </c:if>
         </div>
         
         <div class="mt-4 mb-5">
             <h3 class="mb-1">비슷한 상품</h3>
             <hr class="mb-1">
             <div class="shareProducts">
-                <a href="#" class="product">
-                    <div class="productImg"><img src="../../assets/img/goods-view/main-slider.jpg"></div>
-                    <h5 class="mt-05">봄맞이 트렌치코트, 자켓 외 30종 할인봄맞이 트렌치코트, 자켓 외 30종 할인</h5>
-                    <h4 class="text-bold red">92,000 <span class="text-sm">원</span></h4>
-                </a>
-                <a href="#" class="product">
-                    <div class="productImg"><img src="../../assets/img/goods-view/main-slider.jpg"></div>
-                    <h5 class="mt-05">봄맞이 트렌치코트, 자켓 외 30종 할인봄맞이 트렌치코트, 자켓 외 30종 할인</h5>
-                    <h4 class="text-bold red">92,000 <span class="text-sm">원</span></h4>
-                </a>
-                <a href="#" class="product">
-                    <div class="productImg"><img src="../../assets/img/goods-view/main-slider.jpg"></div>
-                    <h5 class="mt-05">봄맞이 트렌치코트, 자켓 외 30종 할인봄맞이 트렌치코트, 자켓 외 30종 할인</h5>
-                    <h4 class="text-bold red">92,000 <span class="text-sm">원</span></h4>
-                </a>
-                <a href="#" class="product">
-                    <div class="productImg"><img src="../../assets/img/goods-view/main-slider.jpg"></div>
-                    <h5 class="mt-05">봄맞이 트렌치코트, 자켓 외 30종 할인봄맞이 트렌치코트, 자켓 외 30종 할인</h5>
-                    <h4 class="text-bold red">92,000 <span class="text-sm">원</span></h4>
-                </a>
-                <a href="#" class="product">
-                    <div class="productImg"><img src="../../assets/img/goods-view/main-slider.jpg"></div>
-                    <h5 class="mt-05">봄맞이 트렌치코트, 자켓 외 30종 할인봄맞이 트렌치코트, 자켓 외 30종 할인</h5>
-                    <h4 class="text-bold red">92,000 <span class="text-sm">원</span></h4>
-                </a>
-        </div>
+            	<c:if test="${not empty relatedProductList}">
+            	<c:forEach var="list" items="${relatedProductList}">
+            		<a href="/view?product_cd=${list.product_cd}" class="product">${list.product_name}</a>
+	                    <div class="productImg"><img src="http://onejoy-life.com/${list.file_1}" onerror="this.src='http://placehold.it/300x300'"></div>
+	                    <h5 class="mt-05">${list.product_name}</h5>
+	                    <h4 class="text-bold red"><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" /> <span class="text-sm">원</span></h4>
+	                </a>
+            	</c:forEach>
+            	</c:if>
+            	<c:if test="${empty relatedProductList}">
+	            		비슷한 상품이 없습니다.
+            	</c:if>
+        	</div>
         </div>
     </section>
     <button class="btn btn_bottom btn-redcover" id="paymentSubmit">구매하기</button> <%-- btn_purchase--%>
@@ -375,4 +372,4 @@ function move(num){
     $('html').animate({scrollTop : offset.top - 100}, 400);
 }
 </script>
-<%@ include file="/WEB-INF/views/mobile/layout/none-nav-footer.jsp" %>
+<%@ include file="/WEB-INF/views/mobile/layout/footer.jsp" %>

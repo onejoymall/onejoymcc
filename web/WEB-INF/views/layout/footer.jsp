@@ -29,6 +29,12 @@
         </div>
     </footer>
     <script>
+	    $(".scroll-t").click(function() {
+	        $('html, body').animate({
+	        scrollTop : 0
+	        }, 400);
+	        return false;
+	    });
         $(document).ready(function(){
             $('.gnb-submenu>li').mouseover(function(){
                $(this).children('.gnb-submenu-2dp').show();

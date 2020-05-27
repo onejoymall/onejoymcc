@@ -8,7 +8,7 @@
         <ul class="main-slider-wrap">
             <c:if test="${not empty categoryBannerList}">
 	            <c:forEach var="categoryBannerList" items="${categoryBannerList}" varStatus="status">
-	                <li style="background:url(http://onejoy-life.com${categoryBannerList.file_link2}) no-repeat center / contain; cursor: pointer" onclick="location.href='<c:url value="/product?product_ct=${categoryBannerList.pd_category_id}"/>'"><a href="<c:url value="/product?product_ct=${categoryBannerList.pd_category_id}"/>">&nbsp;</a></li>
+	                <li style="background:url(http://onejoy-life.com${categoryBannerList.file_link2}) no-repeat center / cover;background-size: 700px; cursor: pointer" onclick="location.href='<c:url value="/product?product_ct=${categoryBannerList.pd_category_id}"/>'"><a href="<c:url value="/product?product_ct=${categoryBannerList.pd_category_id}"/>">&nbsp;</a></li>
 	            </c:forEach>
 	        </c:if>
         </ul>

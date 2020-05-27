@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
     <div class="scroll-t" id="topcontrol">
         <i class="scroll-i"></i>
@@ -35,8 +36,12 @@
                     <div class="views-count">
                         조회수 <span>75,690</span> 
                         <div class="star-rating">
-                            <span class="star-i">★★★★★</span>
-                            <span class="star-num">5</span>
+                            <span class="star-i">
+                            	<c:forEach var="i" begin="1" end="${scoreAvg}">
+	                            ★
+	                            </c:forEach>
+							</span>
+                            <span class="star-num">${scoreAvg}</span>
                         </div>
                         <div class="heart-thumb">
                             <button type="button" class="heart-btn">
@@ -51,13 +56,14 @@
 	                    <input type="hidden" name="order_max" value="${list.product_max_limit}" />
 		                <input type="hidden" name="order_min" value="${list.product_min_limit}" />
 		                <input type="hidden" name="product_delivery_bundle_yn" value="${list.product_delivery_bundle_yn}" />
-		                <input type="hidden" name="product_user_ud" value="${list.product_user_ud}" />
+		                <input type="hidden" name="product_store_id" value="${list.product_store_id}" />
 		                <input type="hidden" name="product_cd" value="${list.product_cd}" />
 		                <input type="hidden" name="email" value="${sessionScope.email}" />
 		                <input type="hidden" name="login" value="${sessionScope.login}" />
 	                    <button type="button" class="cart-btn" id="paymentSubmit">구매하기</button>
                     </div>
                 </div>
+                <a href="${lineBannerList1.url}"><img src="http://onejoy-life.com/${lineBannerList1.file_1}" alt="" class="width-100"></a>
             </div>
             </form>
             <div class="creators-p">
@@ -69,6 +75,16 @@
                             <li><a href="#sec2" class="reviews-a">리뷰 <span>(${searchVO.totRow})</span></a></li>
                         </ul>
                     </div>
+                    <c:set var="scoreMap" value="<%=new java.util.HashMap()%>" />
+                    <c:set target="${scoreMap}" property="scoreCount1" value="0"/>
+                    <c:set target="${scoreMap}" property="scoreCount2" value="0"/>
+                    <c:set target="${scoreMap}" property="scoreCount3" value="0"/>
+                    <c:set target="${scoreMap}" property="scoreCount4" value="0"/>
+                    <c:set target="${scoreMap}" property="scoreCount5" value="0"/>
+                    <c:forEach var="list" items="${reviewList}">
+                    	<c:set var="tmp" value="scoreMap.scoreCount${status.index}" />
+                    	<c:set target="${scoreMap}" property="scoreCount${list.review_score}" value="${requestScope[tmp] + 1}"/>
+                    </c:forEach>
                     <div class="content1" id="sec1">
                         <div class="description-img" >
                             ${list.product_html}
@@ -77,7 +93,7 @@
                     <div class="content2" id="sec2">
                         <div class="content-reviews">
                             <h3>
-                                <span class="re-product-t">${list.product_name}</span> 에 대한 <span>${searchVO.totRow}</span> 개의 리뷰가 있습니다.
+                                <span class="re-product-t">${list.product_name}</span> 에 대한 <span>${fn:length(reviewList)}</span> 개의 리뷰가 있습니다.
                             </h3>
                             <h5><span>${scoreAvg}</span></h5>
                             <div class="rating-bars-box">
@@ -90,10 +106,10 @@
                                         <span class="star5 active">★</span>
                                     </div>
                                     <div class="rating-percentage-bar">
-                                        <span class="percntage"></span>
+                                        <span class="percntage" style="width: <c:if test="${fn:length(reviewList) == 0}">0</c:if><c:if test="${fn:length(reviewList) != 0}">${scoreMap.scoreCount5 / fn:length(reviewList) * 100}</c:if>%"></span>
                                     </div>
                                     <div class="rating-count">
-                                        <span>21</span>
+                                        <span>${scoreMap.scoreCount5}</span>
                                     </div>
                                 </div>
                             </div>
@@ -107,10 +123,10 @@
                                         <span class="star5">★</span>
                                     </div>
                                     <div class="rating-percentage-bar">
-                                        <span class="percntage"></span>
+                                        <span class="percntage" style="width: <c:if test="${fn:length(reviewList) == 0}">0</c:if><c:if test="${fn:length(reviewList) != 0}">${scoreMap.scoreCount4 / fn:length(reviewList) * 100}</c:if>%"></span>
                                     </div>
                                     <div class="rating-count">
-                                        <span>0</span>
+                                        <span>${scoreMap.scoreCount4}</span>
                                     </div>
                                 </div>
                             </div>
@@ -124,10 +140,10 @@
                                         <span class="star5">★</span>
                                     </div>
                                     <div class="rating-percentage-bar">
-                                        <span class="percntage"></span>
+                                        <span class="percntage" style="width: <c:if test="${fn:length(reviewList) == 0}">0</c:if><c:if test="${fn:length(reviewList) != 0}">${scoreMap.scoreCount3 / fn:length(reviewList) * 100}</c:if>%"></span>
                                     </div>
                                     <div class="rating-count">
-                                        <span>0</span>
+                                        <span>${scoreMap.scoreCount3}</span>
                                     </div>
                                 </div>
                             </div>
@@ -141,10 +157,10 @@
                                         <span class="star5">★</span>
                                     </div>
                                     <div class="rating-percentage-bar">
-                                        <span class="percntage"></span>
+                                        <span class="percntage" style="width: <c:if test="${fn:length(reviewList) == 0}">0</c:if><c:if test="${fn:length(reviewList) != 0}">${scoreMap.scoreCount2 / fn:length(reviewList) * 100}</c:if>%"></span>
                                     </div>
                                     <div class="rating-count">
-                                        <span>0</span>
+                                        <span>${scoreMap.scoreCount2}</span>
                                     </div>
                                 </div>
                             </div>
@@ -158,10 +174,10 @@
                                         <span class="star5">★</span>
                                     </div>
                                     <div class="rating-percentage-bar">
-                                        <span class="percntage active"></span>
+                                        <span class="percntage" style="width: <c:if test="${fn:length(reviewList) == 0}">0</c:if><c:if test="${fn:length(reviewList) != 0}">${scoreMap.scoreCount1 / fn:length(reviewList) * 100}</c:if>%"></span>
                                     </div>
                                     <div class="rating-count">
-                                        <span>0</span>
+                                        <span>${scoreMap.scoreCount1}</span>
                                     </div>
                                 </div>
                             </div>
@@ -174,7 +190,7 @@
                                     <a href="">
                                         <div class="reviews-img">
                                         	<c:if test="${not empty list.file_1}">
-                                            	<img src="${list.file_1}" alt="">
+                                            	<img src="http://onejoy-life.com/${list.file_1}" alt="">
                                            	</c:if>
                                         </div>
                                         <div class="reviews-content">
@@ -198,105 +214,35 @@
                         </div>
                         <div class="related-product clearfix">
                             <h4>비슷한 상품</h4>
-                            <div class="related-box">
-                                <div class="related-img-box">
-                                    <a href="">
-                                        <img src="../assets/img/sold-out.png" alt="" class="sold-out-img">
-                                       <img src="../assets/img/3ce.png" alt="">
-                                   </a>
-                                </div>
-                                <div class="related-txt">
-                                     <p class="related-tit">
-                                        <a href="">Quick and easy drawing eyes! – 3CE Super Slim Pen Eyeliner</a>
-                                    </p>
-                                    <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                                    <p class="loop">
-                                        <a href=""><span>KDRESSER MD</span></a>
-                                    </p>
-                                    <p class="view-count">
-                                        조회수 <span>75,690</span> 
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="related-box">
-                                <div class="related-img-box">
-                                    <a href="">
-                                         <img src="../assets/img/sold-out.png" alt="" class="sold-out-img">
-                                        <img src="../assets/img/3ce.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="related-txt">
-                                     <p class="related-tit">
-                                        <a href="">Quick and easy drawing eyes! – 3CE Super Slim Pen Eyeliner</a>
-                                    </p>
-                                    <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                                    <p class="loop">
-                                        <a href=""><span>KDRESSER MD</span></a>
-                                    </p>
-                                    <p class="view-count">
-                                        조회수 <span>75,690</span> 
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="related-box">
-                                <div class="related-img-box">
-                                    <a href="">
-                                        <img src="../assets/img/sold-out.png" alt="" class="sold-out-img">
-                                       <img src="../assets/img/3ce.png" alt="">
-                                   </a>
-                                </div>
-                                <div class="related-txt">
-                                     <p class="related-tit">
-                                        <a href="">Quick and easy drawing eyes! – 3CE Super Slim Pen Eyeliner</a>
-                                    </p>
-                                    <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                                    <p class="loop">
-                                        <a href=""><span>KDRESSER MD</span></a>
-                                    </p>
-                                    <p class="view-count">
-                                        조회수 <span>75,690</span> 
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="related-box">
-                                <div class="related-img-box">
-                                    <a href="">
-                                        <img src="../assets/img/sold-out.png" alt="" class="sold-out-img">
-                                       <img src="../assets/img/3ce.png" alt="">
-                                   </a>
-                                </div>
-                                <div class="related-txt">
-                                     <p class="related-tit">
-                                        <a href="">Quick and easy drawing eyes! – 3CE Super Slim Pen Eyeliner</a>
-                                    </p>
-                                    <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                                    <p class="loop">
-                                        <a href=""><span>KDRESSER MD</span></a>
-                                    </p>
-                                    <p class="view-count">
-                                        조회수 <span>75,690</span> 
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="related-box">
-                                <div class="related-img-box">
-                                    <a href="">
-                                       <img src="../assets/img/3ce.png" alt="">
-                                   </a>
-                                </div>
-                                <div class="related-txt">
-                                     <p class="related-tit">
-                                        <a href="">Quick and easy drawing eyes! – 3CE Super Slim Pen Eyeliner</a>
-                                    </p>
-                                    <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
-                                    <p class="loop">
-                                        <a href=""><span>KDRESSER MD</span></a>
-                                    </p>
-                                    <p class="view-count">
-                                        조회수 <span>75,690</span> 
-                                    </p>
-                                </div>
-                            </div>
+                            <c:if test="${not empty relatedProductList}">
+			            	<c:forEach var="list" items="${relatedProductList}">
+			            		<div class="related-box">
+	                                <div class="related-img-box">
+	                                    <a href="/view?product_cd=${list.product_cd}">
+	                                       <!-- <img src="../assets/img/sold-out.png" alt="" class="sold-out-img"> -->
+	                                       <img src="http://onejoy-life.com/${list.file_1}" onerror="this.src='http://placehold.it/300x300'">
+	                                   </a>
+	                                </div>
+	                                <div class="related-txt">
+	                                     <p class="related-tit">
+	                                        <a href="/view?product_cd=${list.product_cd}">${list.product_name}</a>
+	                                    </p>
+	                                    <p class="live-shopping-price"><ins><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</ins><del><span class="price-before"><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</span></del></p>
+	                                    <p class="loop">
+	                                        <a href="/view?product_cd=${list.product_cd}">${list.product_name}</a><span>${list.store_id}</span></a>
+	                                    </p>
+	                                    <p class="view-count">
+	                                        조회수 <span>75,690</span> 
+	                                    </p>
+	                                </div>
+	                            </div>
+			                </c:forEach>
+			            	</c:if>
+			            	<c:if test="${empty relatedProductList}">
+				            	<div class="related-box">
+				            		비슷한 상품이 없습니다.
+			            		</div>
+			            	</c:if>
                         </div>
                     </div>
                 </div>
@@ -305,18 +251,18 @@
 
        <div class="other-area">
            <div class="other-in">
-               <div class="panel-img">
+               <!-- <div class="panel-img">
                    <img src="../assets/img/lip.png" alt="">
-               </div>
+               </div> -->
                <div class="panel-list">
-                   <p class="panel-tit">MLBB is not too far from you – Velvet Lip Tint from 3CE</p>
+                   <p class="panel-tit">${list.product_name}</p>
                    <p class="panel-a">
                        <a href="#sec1"><span>상세설명</span></a>
-                       <a href="#sec2">리뷰 <span>(24)</span></a>
+                       <a href="#sec2">리뷰 <span>(${fn:length(reviewList)})</span></a>
                    </p>
                </div>
                <div class="panel-price">
-                    <p class="live-shopping-price"><ins>469,000원</ins><del><span class="price-before">415,000원</span></del></p>
+                    <p class="live-shopping-price"><ins><ins><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" />원</ins><del><span class="price-before"><ins><fmt:formatNumber value="${list.product_user_payment}" groupingUsed="true" />원</span></del></p>
                </div>
            </div>
        </div>

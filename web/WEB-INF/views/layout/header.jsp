@@ -33,6 +33,7 @@
     <script src="/assets/js/jquery.bxslider.min.js"></script>
     <!-- timepicker -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.0.0/masonry.pkgd.min.js"></script>
     <script>
     //전역변수
     <c:if test="${not empty postUrl}">

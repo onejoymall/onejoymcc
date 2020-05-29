@@ -113,6 +113,7 @@ body *{color:#e1e1e1}
     border:3px solid rgb(255, 255, 255);
     font-size:24px;
     font-weight: 900;
+    white-space: nowrap;/*2020.05.22 추가*/
 }
 .item-info{width:100%;padding:0 10px;}
 .live-shopping-title{
@@ -225,4 +226,21 @@ body *{color:#e1e1e1}
     color:#fff;
     background:#da394d;
     border:1px solid #da394d;
+}
+
+.live-shopping-item{/*2020.05.22 수정 ~85*/
+    float:left;
+    position:relative;
+    width:calc((100% / 4) - 4px);
+    height:360px;
+    margin-bottom:55px;
+}
+.live-shopping-item:not(:nth-child(4n)){
+    margin-right:5px;
+}
+.live-shopping-item a .imgbox{
+    position:relative;
+    width:100%;
+    padding-top:calc(100% / 4 * 3);
+    overflow: hidden;
 }

@@ -54,7 +54,7 @@ function deleteFavorite(product_cd) {
                             $.toast({
                                 text: showText,
                                 showHideTransition: 'plain', //펴짐
-                                position: 'top-right',
+                                position: 'bottom-right',
                                 heading: 'Error',
                                 icon: 'error'
                             });
@@ -121,7 +121,7 @@ function addFavorite(product_cd){
                             $.toast({
                                 text: showText,
                                 showHideTransition: 'plain', //펴짐
-                                position: 'top-right',
+                                position: 'bottom-right',
                                 heading: 'Error',
                                 icon: 'error'
                             });
@@ -138,7 +138,7 @@ function addFavorite(product_cd){
                     ],
 
                     showHideTransition: 'plain', //펴짐
-                    position: 'top-right',
+                    position: 'bottom-right',
                     icon: 'success',
                     hideAfter: false,
                 });
@@ -217,7 +217,7 @@ $('.mgPointPaid').on("click",function () {
                     $.toast({
                         text: showText,
                         showHideTransition: 'plain', //펴짐
-                        position: 'top-right',
+                        position: 'bottom-right',
                         heading: 'Error',
                         icon: 'error'
                     });
@@ -227,7 +227,7 @@ $('.mgPointPaid').on("click",function () {
                 $.toast({
                     text: 'success',
                     showHideTransition: 'plain', //펴짐
-                    position: 'top-right',
+                    position: 'bottom-right',
                     icon: 'success',
                     hideAfter: 2000,
                     afterHidden: function () {
@@ -255,7 +255,7 @@ $('.modal-level-btn').on("click",function () {
         	$.toast({
                     text: 'success',
                     showHideTransition: 'plain', //펴짐
-                    position: 'top-right',
+                    position: 'bottom-right',
                     icon: 'success',
                     hideAfter: 2000,
                     afterHidden: function () {
@@ -296,7 +296,7 @@ $('.modal-enable-menu-btn').on("click",function () {
                     $.toast({
                         text: showText,
                         showHideTransition: 'plain', //펴짐
-                        position: 'top-right',
+                        position: 'bottom-right',
                         heading: 'Error',
                         icon: 'error'
                     });
@@ -306,7 +306,7 @@ $('.modal-enable-menu-btn').on("click",function () {
                 $.toast({
                     text: 'success',
                     showHideTransition: 'plain', //펴짐
-                    position: 'top-right',
+                    position: 'bottom-right',
                     icon: 'success',
                     hideAfter: 2000,
                     afterHidden: function () {
@@ -344,7 +344,7 @@ $('#deleteDeliveryInfo').on("click",function () {
                     $.toast({
                         text: showText,
                         showHideTransition: 'plain', //펴짐
-                        position: 'top-right',
+                        position: 'bottom-right',
                         heading: 'Error',
                         icon: 'error'
                     });
@@ -354,7 +354,7 @@ $('#deleteDeliveryInfo').on("click",function () {
                 $.toast({
                     text: 'success',
                     showHideTransition: 'plain', //펴짐
-                    position: 'top-right',
+                    position: 'bottom-right',
                     icon: 'success',
                     hideAfter: 2000,
                     afterHidden: function () {
@@ -392,7 +392,7 @@ $('#updateDefaultDeliveryInfo').on("click",function () {
                     $.toast({
                         text: showText,
                         showHideTransition: 'plain', //펴짐
-                        position: 'top-right',
+                        position: 'bottom-right',
                         heading: 'Error',
                         icon: 'error'
                     });
@@ -402,7 +402,7 @@ $('#updateDefaultDeliveryInfo').on("click",function () {
                 $.toast({
                     text: 'success',
                     showHideTransition: 'plain', //펴짐
-                    position: 'top-right',
+                    position: 'bottom-right',
                     icon: 'success',
                     hideAfter: 2000,
                     afterHidden: function () {
@@ -471,7 +471,7 @@ $("#updateDeliveryBtn").click(function(){
                     $.toast({
                         text: showText,
                         showHideTransition: 'plain', //펴짐
-                        position: 'top-right',
+                        position: 'bottom-right',
                         heading: 'Error',
                         icon: 'error'
                     });
@@ -481,7 +481,7 @@ $("#updateDeliveryBtn").click(function(){
                 $.toast({
                     text: 'success',
                     showHideTransition: 'plain', //펴짐
-                    position: 'top-right',
+                    position: 'bottom-right',
                     icon: 'success',
                     hideAfter: 2000,
                     afterHidden: function () {
@@ -517,7 +517,7 @@ $("#newDeliveryBtn").click(function(){
                     $.toast({
                         text: showText,
                         showHideTransition: 'plain', //펴짐
-                        position: 'top-right',
+                        position: 'bottom-right',
                         heading: 'Error',
                         icon: 'error'
                     });
@@ -526,7 +526,7 @@ $("#newDeliveryBtn").click(function(){
                 $.toast({
                     text: 'success',
                     showHideTransition: 'plain', //펴짐
-                    position: 'top-right',
+                    position: 'bottom-right',
                     icon: 'success',
                     hideAfter: 2000,
                     afterHidden: function () {
@@ -658,7 +658,7 @@ $("button[name=coupon-confirm-btn]").click(function(){
                     $.toast({
                         text: showText,
                         showHideTransition: 'plain', //펴짐
-                        position: 'top-right',
+                        position: 'bottom-right',
                         heading: 'Error',
                         icon: 'error'
                     });
@@ -668,7 +668,7 @@ $("button[name=coupon-confirm-btn]").click(function(){
             	$.toast({
                     text: 'success',
                     showHideTransition: 'plain', //펴짐
-                    position: 'top-right',
+                    position: 'bottom-right',
                     icon: 'success',
                     hideAfter: 1000,
                     afterHidden: function () {
@@ -893,7 +893,7 @@ $("#couponBatchUpdateBtn").click(function(){
 		$.toast({
             text: "항목을 선택해주세요.",
             showHideTransition: 'plain', //펴짐
-            position: 'top-right',
+            position: 'bottom-right',
             heading: 'Error',
             icon: 'error'
         });
@@ -929,7 +929,7 @@ $('#coupon-update-batch-btn').on("click",function(){
                     $.toast({
                         text: showText,
                         showHideTransition: 'plain', //펴짐
-                        position: 'top-right',
+                        position: 'bottom-right',
                         heading: 'Error',
                         icon: 'error'
                     });
@@ -939,7 +939,7 @@ $('#coupon-update-batch-btn').on("click",function(){
             	$.toast({
                     text: 'success',
                     showHideTransition: 'plain', //펴짐
-                    position: 'top-right',
+                    position: 'bottom-right',
                     icon: 'success',
                     hideAfter: 1000,
                     afterHidden: function () {
@@ -1006,7 +1006,7 @@ $(".couponDownBtn").click(function(){
                     $.toast({
                         text: showText,
                         showHideTransition: 'plain', //펴짐
-                        position: 'top-right',
+                        position: 'bottom-right',
                         heading: 'Error',
                         icon: 'error'
                     });
@@ -1016,7 +1016,7 @@ $(".couponDownBtn").click(function(){
             	$.toast({
                     text: 'success',
                     showHideTransition: 'plain', //펴짐
-                    position: 'top-right',
+                    position: 'bottom-right',
                     icon: 'success',
                     hideAfter: 1000,
                     afterHidden: function () {

@@ -34,4 +34,5 @@
     </li>
 </c:forEach>
 </c:if>
+    <li><a href="http://onejoy-life.com/" class="noDp red">원조이라이프 돌아가기</a></li>
 </ul>

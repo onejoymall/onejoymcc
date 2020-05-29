@@ -5020,3 +5020,14 @@ select#list-sort{
     overflow: auto;
     margin-top: 35px;
 }
+
+body.black .language{
+	color: #fff;
+}
+body.black .languagePop .popClose{
+	background: transparent;
+	color: #fff;
+}
+body.black .language-ul *{
+	color: rgba(255,255,255,0.7);
+}

@@ -263,7 +263,7 @@
             <div class="shareProducts">
             	<c:if test="${not empty relatedProductList}">
             	<c:forEach var="list" items="${relatedProductList}">
-            		<a href="/view?product_cd=${list.product_cd}" class="product">${list.product_name}</a>
+            		<a href="/view?product_cd=${list.product_cd}" class="product">
 	                    <div class="productImg"><img src="http://onejoy-life.com/${list.file_1}" onerror="this.src='http://placehold.it/300x300'"></div>
 	                    <h5 class="mt-05">${list.product_name}</h5>
 	                    <h4 class="text-bold red"><fmt:formatNumber value="${list.product_payment}" groupingUsed="true" /> <span class="text-sm">원</span></h4>

@@ -223,12 +223,13 @@
             useCSS:false,
             touchEnabled : (navigator.maxTouchPoints > 0),randomStart: false,
         });
+        /*2020.05.22 수정 ~ 847*/
         $('.shop-slider').bxSlider({
             auto:false,
             mode:'horizontal',
-            slideWidth:346,
+            slideWidth:258.5,
             moveSlides:1,
-            maxSlides:3,
+            maxSlides:4,
             autoControls:false,
             pager:false,
             controls:true,

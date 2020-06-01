@@ -5031,3 +5031,8 @@ body.black .languagePop .popClose{
 body.black .language-ul *{
 	color: rgba(255,255,255,0.7);
 }
+
+.jq-toast-wrap.bottom-right{
+    bottom: 60px!important;
+    right: 20px!important;
+}

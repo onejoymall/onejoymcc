@@ -488,3 +488,11 @@ body{color:#e1e1e1; font-size: 14px;font-family: 'Noto Sans KR';background-color
     max-height:202px;
     margin:0 auto;
 }
+.buy-wrap{
+    position: relative;
+}
+.jq-toast-wrap{
+    position: absolute!important;
+    bottom:70px!important;
+    right:0px!important;
+}

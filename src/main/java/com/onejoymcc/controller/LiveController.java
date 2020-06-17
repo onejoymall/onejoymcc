@@ -79,7 +79,7 @@ public class LiveController {
 
             searchVO.setDisplayRowCount(5);
             searchVO.setStaticRowEnd(5);
-            searchVO.pageCalculate(cartDAO.getTopCartListCount(params));
+//            searchVO.pageCalculate(cartDAO.getTopCartListCount(params));
 
             //오늘 본 상품 출력시 적용
             if(isEmpty((List<String>)session.getAttribute("today"))){

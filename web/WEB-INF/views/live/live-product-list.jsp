@@ -9,7 +9,7 @@
                     <div class="list-wrap">
                         <div class="list-top">
                         	<c:if test="${not empty categoryRowData.pd_category_name}">
-                            	<h3>${categoryRowData.pd_category_name} 카테고리</h3>
+                            	<h3>${categoryRowData.pd_category_name}</h3>
                            	</c:if>
                             <c:if test="${not empty param.product_name}">
                             	<h3>"${param.product_name}" 검색결과</h3>

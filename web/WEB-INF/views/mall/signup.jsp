@@ -8,6 +8,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
+<style>
+	header{
+		background-color:#151515;
+	}
+	body * {
+	    color: #444444;
+	}
+	footer * {
+	    color: #e1e1e1;
+	}
+</style>
 <div class="wrap">
     <div class="joinform">
         <div class="path">

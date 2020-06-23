@@ -114,7 +114,7 @@ public class UserController {
         } else {
             return "mall/signup";
         }*/
-        return "mall/signup";
+        return "redirect:http://onejoy-life.com/sign/signup";
     }
 
     @RequestMapping(value = "/sign/signUpDone")

@@ -276,7 +276,7 @@
         	</div>
         </div>
     </section>
-    <button class="btn btn_bottom btn-redcover" id="paymentSubmit">구매하기</button> <%-- btn_purchase--%>
+    <button class="btn btn_bottom btn-redcover" id="paymentSubmit" type="button">구매하기</button> <%-- btn_purchase--%>
     <input type="hidden" name="payment_order_quantity" value="1">
     <input type="hidden" name="order_max" value="${list.product_max_limit}" />
     <input type="hidden" name="order_min" value="${list.product_min_limit}" />

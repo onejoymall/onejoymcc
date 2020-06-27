@@ -50,7 +50,7 @@
                             <span class="heart-count">724</span>
                         </div>
                     </div>
-                    <div class="button-area">
+                    <div class="button-area buy-wrap">
 	                    ${option}
 	                    <input type="hidden" name="payment_order_quantity" value="1">
 	                    <input type="hidden" name="order_max" value="${list.product_max_limit}" />

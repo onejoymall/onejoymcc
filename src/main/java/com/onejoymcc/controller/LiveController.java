@@ -200,7 +200,11 @@ public class LiveController {
             //옵션
             params.put("product_option_style",list.get("product_option_style"));
             params.put("product_option_input",list.get("product_option_input"));
-            String option = getOption(params);
+            String option="";
+            if(!list.get("product_option_input").equals("")){
+                option = getOption(params);
+            }
+
             model.addAttribute("option",option);
 
             //서비스안내
@@ -238,15 +242,18 @@ public class LiveController {
             params.put("staticRowEnd",searchVO.getStaticRowEnd());
             params.put("displayRowCount", searchVO.getDisplayRowCount());
             List<Map<String,Object>> reviewList = reviewDAO.getReviewForProductList(params);
-
-            int[] scoreArr = new int[reviewList.size()];
-            for(int i=0; i<reviewList.size(); i++) {
-            	scoreArr[i] = (int)reviewList.get(i).get("review_score");
+            if(!isEmpty(reviewList)){
+                int[] scoreArr = new int[reviewList.size()];
+                for(int i=0; i<reviewList.size(); i++) {
+                    scoreArr[i] = (int)reviewList.get(i).get("review_score");
+                }
+                model.addAttribute("scoreAvg", Arrays.stream(scoreArr).average().getAsDouble());
             }
+
 
             model.addAttribute("reviewList", reviewList);
             model.addAttribute("searchVO", searchVO);
-            model.addAttribute("scoreAvg", Arrays.stream(scoreArr).average().getAsDouble());
+
         }catch (Exception e){
             e.printStackTrace();
         }

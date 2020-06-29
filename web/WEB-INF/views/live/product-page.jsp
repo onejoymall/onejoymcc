@@ -51,7 +51,12 @@
                         </div>
                     </div>
                     <div class="button-area buy-wrap">
-	                    ${option}
+                        <c:if test="${not empty option}">
+                            ${option}
+                        </c:if>
+                        <c:if test="${empty option}">
+                            <input type="hidden" name="option_name">
+                        </c:if>
 	                    <input type="hidden" name="payment_order_quantity" value="1">
 	                    <input type="hidden" name="order_max" value="${list.product_max_limit}" />
 		                <input type="hidden" name="order_min" value="${list.product_min_limit}" />

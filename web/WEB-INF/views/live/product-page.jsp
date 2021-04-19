@@ -10,6 +10,7 @@
 
         <div class="main">
         	<form name="defaultForm" id="defaultForm" method="POST" action="http://onejoy-life.com/product/productPayment">
+<%--                <form name="defaultForm" id="defaultForm" method="POST" action="http://localhost:8080/product/productPayment">--%>
             <div class="top-area clearfix">
                 <div class="top-left">
                     <div class="iframebox">
@@ -65,6 +66,7 @@
 		                <input type="hidden" name="product_cd" value="${list.product_cd}" />
 		                <input type="hidden" name="email" value="${sessionScope.email}" />
 		                <input type="hidden" name="login" value="${sessionScope.login}" />
+                        <input type="hidden" name="product_delivery_payment" value="${deliveryPayment}">
 	                    <button type="button" class="cart-btn" id="paymentSubmit">구매하기</button>
                     </div>
                 </div>
